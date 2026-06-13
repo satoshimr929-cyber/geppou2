@@ -51,13 +51,13 @@
   .qb-paid.on{border-color:var(--accent2);background:#00d4aa22;color:var(--accent2);}
   .qb-daikyu.on{border-color:#ffaa00;background:#ffaa0022;color:#ffaa00;}
   .qb-holiday.on{border-color:var(--warn);background:#ff6b6b22;color:var(--warn);}
-  .summary-box{max-width:700px;margin:0 auto 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px 20px;}
-  .summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-  .summary-item{text-align:center;}
-  .summary-item .val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--accent);}
+  .summary-box{max-width:700px;margin:0 auto 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:10px 12px;}
+  .summary-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px 4px;}
+  .summary-item{text-align:center;padding:6px 2px;background:var(--surface2);border-radius:8px;}
+  .summary-item .val{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--accent);line-height:1.2;}
   .summary-item .val.green{color:var(--accent2);}
   .summary-item .val.orange{color:#ffaa00;}
-  .summary-item .lbl{font-size:11px;color:var(--text-muted);margin-top:2px;}
+  .summary-item .lbl{font-size:9px;color:var(--text-muted);margin-top:3px;line-height:1.3;}
   .meta-extra{max-width:700px;margin:0 auto 28px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   .btn-row{max-width:700px;margin:0 auto;display:flex;gap:10px;justify-content:center;}
   .btn{padding:12px 28px;border-radius:10px;border:none;font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.05em;}
@@ -69,7 +69,7 @@
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--accent2);color:#0f1117;font-weight:700;font-size:13px;padding:12px 24px;border-radius:30px;z-index:999;transition:transform .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;}
   .toast.show{transform:translateX(-50%) translateY(0);}
   .loading-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s;z-index:1000;}
-  @media(max-width:480px){.meta-section,.meta-extra,.summary-grid{grid-template-columns:1fr;}.day-body-grid{grid-template-columns:1fr;}}
+  @media(max-width:480px){.meta-section,.meta-extra{grid-template-columns:1fr;}.day-body-grid{grid-template-columns:1fr;}}
 
   @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
   .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin:0 3px;}
@@ -94,8 +94,10 @@
 </div>
 
 <div class="meta-section">
-  <div class="field"><label>名前</label>
-    <input type="text" id="name" value=""></div>
+  <div class="field"><label>氏名</label>
+    <input type="text" id="name" placeholder="山田 太郎" value="" oninput="saveData()" onchange="onNameInput()">
+    <p style="font-size:11px;color:var(--text-muted);margin-top:5px;">※ 名字　名前　の順でスペースを入れて入力してください（例：山田 太郎）</p>
+  </div>
   <div class="field"><label>対象月（16日始まり）</label>
     <select id="yearmonth" style="width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:10px 14px;outline:none;"></select>
   </div>
@@ -118,16 +120,16 @@
 <div class="section-title">集計</div>
 <div class="summary-box">
   <div class="summary-grid">
-    <div class="summary-item"><div class="val" id="sumWork">0</div><div class="lbl">出勤日数</div></div>
-    <div class="summary-item"><div class="val green" id="sumPaid">0</div><div class="lbl">有給日数</div></div>
-    <div class="summary-item"><div class="val orange" id="sumDaikyu">0</div><div class="lbl">代休使用日数</div></div>
-    <div class="summary-item"><div class="val orange" id="sumHoliWork">0</div><div class="lbl">休日出勤日数</div></div>
-    <div class="summary-item"><div class="val" id="sumAbsent" style="color:var(--warn)">0</div><div class="lbl">欠勤日数</div></div>
-    <div class="summary-item"><div class="val" id="sumBase">0</div><div class="lbl">基本作業日数(自動)</div></div>
-    <div class="summary-item"><div class="val" id="sumTotal">0</div><div class="lbl">合計出勤日数(自動)</div></div>
-    <div class="summary-item"><div class="val" id="sumHayade">0</div><div class="lbl">早出（時間）</div></div>
-    <div class="summary-item"><div class="val" id="sumZangyo">0</div><div class="lbl">残業（時間）</div></div>
-    <div class="summary-item"><div class="val" id="sumDaikyuZan" style="color:#ffaa00">0</div><div class="lbl">今月代休残日数</div></div>
+    <div class="summary-item"><div class="val" id="sumWork">0</div><div class="lbl">出勤</div></div>
+    <div class="summary-item"><div class="val green" id="sumPaid">0</div><div class="lbl">有給</div></div>
+    <div class="summary-item"><div class="val orange" id="sumDaikyu">0</div><div class="lbl">代休使用</div></div>
+    <div class="summary-item"><div class="val orange" id="sumHoliWork">0</div><div class="lbl">休日出勤</div></div>
+    <div class="summary-item"><div class="val" id="sumAbsent" style="color:var(--warn)">0</div><div class="lbl">欠勤</div></div>
+    <div class="summary-item"><div class="val" id="sumBase">0</div><div class="lbl">基本作業<br>(自動)</div></div>
+    <div class="summary-item"><div class="val" id="sumTotal">0</div><div class="lbl">合計出勤<br>(自動)</div></div>
+    <div class="summary-item"><div class="val" id="sumHayade">0</div><div class="lbl">早出<br>(h)</div></div>
+    <div class="summary-item"><div class="val" id="sumZangyo">0</div><div class="lbl">残業<br>(h)</div></div>
+    <div class="summary-item"><div class="val" id="sumDaikyuZan" style="color:#ffaa00">0</div><div class="lbl">代休残<br>(今月)</div></div>
   </div>
 </div>
 
@@ -151,41 +153,31 @@
   </div>
 </div>
 
+<div class="section-title" style="display:flex;align-items:center;justify-content:space-between;">
+  <span>👷 作業者登録（全月共通）</span>
+  <span id="workerCount" style="font-size:12px;color:var(--accent2);font-weight:700;letter-spacing:.05em;"></span>
+</div>
+<div style="max-width:700px;margin:0 auto 20px;background:var(--surface);border:1.5px solid var(--accent);border-radius:12px;padding:14px 16px;">
+  <div id="workerTagList" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;min-height:28px;"></div>
+  <div style="display:flex;gap:8px;">
+    <input type="text" id="workerInput" placeholder="作業者名を入力してEnterまたは追加"
+      style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;"
+      onkeydown="if(event.key==='Enter'){event.preventDefault();addWorker();}">
+    <button onclick="addWorker()" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">追加</button>
+  </div>
+</div>
+
 <div class="section-title">現場管理日程表</div>
 <div style="max-width:700px;margin:0 auto 20px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;">
   <div class="field" style="margin-bottom:12px;">
-    <label>対象現場</label>
-    <select id="kanriSiteSelect"
-      style="width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;"
-      onchange="saveData();updateKanriBtn();renderKanriDays()">
-      <option value="">-- 現場を選択 --</option>
-    </select>
-  </div>
-  <div class="field" style="margin-bottom:12px;">
-    <label>担当者</label>
-    <input type="text" id="kanriTanto" placeholder="担当者名を入力"
-      style="width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;"
-      oninput="saveData()" onchange="saveData()">
-  </div>
-  <div class="field" style="margin-bottom:12px;">
-    <label>作業者登録（全月共通）</label>
-    <div id="workerTagList" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;min-height:28px;"></div>
+    <label>管理現場</label>
+    <div id="kanriSiteList" style="display:flex;flex-direction:column;gap:10px;margin-bottom:10px;"></div>
     <div style="display:flex;gap:8px;">
-      <input type="text" id="workerInput" placeholder="作業者名を入力してEnterまたは追加"
-        style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;"
-        onkeydown="if(event.key==='Enter'){event.preventDefault();addWorker();}">
-      <button onclick="addWorker()" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">追加</button>
-    </div>
-  </div>
-  <div id="kanriDaySection" style="display:none;">
-    <div class="field" style="margin-bottom:12px;">
-      <label>一括選択（全日に適用）</label>
-      <div id="kanriBulkChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;"></div>
-      <button onclick="applyKanriBulk()" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">一括適用</button>
-    </div>
-    <div class="field">
-      <label>日にちごとの作業者（タップで選択）</label>
-      <div id="kanriDayList" style="display:flex;flex-direction:column;gap:8px;"></div>
+      <select id="kanriAddSiteSelect"
+        style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;">
+        <option value="">-- 現場を選択 --</option>
+      </select>
+      <button onclick="addKanriSite()" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">＋ 追加</button>
     </div>
   </div>
 </div>
@@ -237,20 +229,28 @@
 </div>
 
 
-<div style="max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:8px;">
-  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
-    <button class="btn btn-secondary" onclick="clearAll()">リセット</button>
-    <button class="btn btn-secondary" onclick="exportJSON()">💾 バックアップ</button>
-    <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📂 読み込み</button>
+<div style="max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:10px;">
+
+  <!-- データ管理ボタン群 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+    <button class="btn btn-secondary" onclick="clearAll()" style="font-size:13px;padding:10px 8px;">🗑️ リセット</button>
+    <button class="btn btn-secondary" onclick="exportJSON()" style="font-size:13px;padding:10px 8px;">💾 バックアップ</button>
+    <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()" style="font-size:13px;padding:10px 8px;">📂 読み込み</button>
     <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(this)">
-    <button class="btn btn-secondary" onclick="gistSave()">☁️ クラウド保存</button>
-    <button class="btn btn-secondary" onclick="gistLoad()">🔄 クラウド読込</button>
+    <button class="btn btn-secondary" onclick="gistSave()" style="font-size:13px;padding:10px 8px;">☁️ クラウド保存</button>
   </div>
-  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
-    <button class="btn btn-primary" id="exportBtn" onclick="exportExcel()" disabled>⏳ 準備中...</button>
-    <button class="btn btn-secondary" id="holiBtn" onclick="exportHoliReport()" style="display:none">📋 休日出勤報告書</button>
-    <button class="btn btn-secondary" id="kanriBtn" onclick="exportKanriReport()" style="display:none">📊 現場管理日程表</button>
+  <button class="btn btn-secondary" onclick="gistLoad()" style="font-size:13px;padding:10px 8px;width:100%;">🔄 クラウド読込</button>
+
+  <!-- 区切り線 -->
+  <div style="border-top:1.5px solid var(--border);margin:2px 0;"></div>
+
+  <!-- 出力ボタン群 -->
+  <button class="btn btn-primary" id="exportBtn" onclick="exportExcel()" disabled style="width:100%;font-size:15px;padding:14px;">⏳ 準備中...</button>
+  <div id="exportSubBtns" style="display:none;grid-template-columns:1fr 1fr;gap:8px;">
+    <button class="btn btn-secondary" id="holiBtn" onclick="exportHoliReport()" style="display:none;font-size:13px;padding:10px 8px;">📋 休日出勤報告書</button>
+    <button class="btn btn-secondary" id="kanriBtn" onclick="exportKanriReport()" style="display:none;font-size:13px;padding:10px 8px;">📊 現場管理日程表</button>
   </div>
+
 </div>
 <div class="toast" id="toast"></div>
 
@@ -489,7 +489,7 @@ function renderDays() {
     cont.appendChild(el);
   });
   updateSummary(); updateHoliBtn();
-  if(typeof renderKanriDays==='function')try{renderKanriDays();}catch(e){}
+  if(typeof renderKanriSites==='function')try{renderKanriSites();}catch(e){}
 }
 function toggleRow(i){
   const t=document.getElementById(`row-${i}`), open=t.classList.contains('open');
@@ -501,13 +501,13 @@ function setType(i,type){
   if(type!=='work'&&type!=='holi-work'){rows[i].site='';rows[i].task='';rows[i].start='';rows[i].end='';rows[i].hayade='';rows[i].zangyo='';}
   else{if(!rows[i].start)rows[i].start=DEFAULT_START;if(!rows[i].end)rows[i].end=DEFAULT_END;}
   const wasOpen=document.getElementById(`row-${i}`).classList.contains('open');
-  renderDays(); saveData(); if(wasOpen) document.getElementById(`row-${i}`).classList.add('open');
+  renderDays(); autoFillKanriWorkers(); saveData(); if(wasOpen) document.getElementById(`row-${i}`).classList.add('open');
 }
 function updateRow(i,key,val){
   rows[i][key]=val; updateSummary(); saveData();
   const r=rows[i], el=document.querySelector(`#row-${i} .day-summary`);
   if(el) el.innerHTML=(r.type==='work'||r.type==='holi-work')?(r.site?`${r.site}${r.task?'　'+r.task:''}`:'<span class="empty">未入力</span>'):TYPE_LABEL[r.type];
-  if(key==='site')try{renderKanriDays();}catch(e){}
+  if(key==='site'){try{autoFillKanriWorkers();renderKanriSites();}catch(e){}}
 }
 function updateSummary(){
   const w=rows.filter(r=>r.type==='work').length, h=rows.filter(r=>r.type==='holi-work').length;
@@ -526,48 +526,152 @@ function updateSummary(){
   const daik  = rows.filter(r=>r.type==='daikyu').length;
   document.getElementById('sumDaikyuZan').textContent = Math.max(0, prevD + holiW - daik);
 }
-function updateHoliBtn(){const btn=document.getElementById('holiBtn');if(btn)btn.style.display=rows.some(r=>r.type==='holi-work')?'':'none';}
+function updateHoliBtn(){
+  const btn=document.getElementById('holiBtn');
+  if(btn)btn.style.display=rows.some(r=>r.type==='holi-work')?'block':'none';
+  _updateExportSubBtns();
+}
 function updateKanriBtn(){
   const btn=document.getElementById('kanriBtn');if(!btn)return;
-  const site=document.getElementById('kanriSiteSelect').value;
-  btn.style.display=(pyodide&&site)?'':'none';
+  btn.style.display=(pyodide&&kanriSites.length)?'block':'none';
+  _updateExportSubBtns();
+}
+function _updateExportSubBtns(){
+  const c=document.getElementById('exportSubBtns');if(!c)return;
+  const h=document.getElementById('holiBtn'),k=document.getElementById('kanriBtn');
+  const show=(h&&h.style.display!=='none')||(k&&k.style.display!=='none');
+  c.style.display=show?'grid':'none';
 }
 
-// ── 現場管理日程表UI ──
-let kanriWorkersByIdx = {};  // {rowsのidx: "三浦・海本"}
-let workerList = [];         // 登録作業者（全月共通）
-let kanriBulkSelected = [];  // 一括選択中の作業者
+// ── 現場管理日程表UI（複数現場） ──
+// kanriSites = [{site,tanto,workersByIdx:{idx:"三浦・海本"},extraDays:[{date,start,end,workers,_open}],_bulk:[],_open:true}]
+let kanriSites = [];
+let workerList = [];  // 登録作業者（全月共通）
+let _autoWorker = '';  // 氏名から自動登録した名字
+
+// 指定名をすべての現場のworkersByIdx・extraDaysから削除
+function removeWorkerFromKanri(name){
+  if(!name) return;
+  kanriSites.forEach(ks=>{
+    Object.keys(ks.workersByIdx||{}).forEach(k=>{
+      const arr=(ks.workersByIdx[k]||'').split('・').map(s=>s.trim()).filter(s=>s&&s!==name);
+      ks.workersByIdx[k]=arr.join('・');
+    });
+    (ks.extraDays||[]).forEach(ed=>{
+      const arr=(ed.workers||'').split('・').map(s=>s.trim()).filter(s=>s&&s!==name);
+      ed.workers=arr.join('・');
+    });
+    ks._bulk=(ks._bulk||[]).filter(w=>w!==name);
+  });
+}
+
+// 氏名入力（確定時）→名字を自動でworkerListに登録
+function onNameInput(){
+  const fullName = document.getElementById('name').value.trim();
+  // スペース（全角・半角）で分割して名字を取得
+  const parts = fullName.split(/[\s\u3000]+/);
+  const myoji = parts[0] || '';
+  // 以前の自動登録を削除（workerList・日程表から）
+  if(_autoWorker && _autoWorker !== myoji){
+    workerList = workerList.filter(w => w !== _autoWorker);
+    removeWorkerFromKanri(_autoWorker);
+  }
+  if(myoji && !workerList.includes(myoji)){
+    workerList.push(myoji);
+  }
+  _autoWorker = myoji;
+  renderWorkerTags();
+  // 日別入力済みの現場管理日程表に自動反映
+  autoFillKanriWorkers();
+  renderKanriSites();
+  saveData();
+}
+
+// 日別入力で現場が設定済みの行に、自動登録名字をworkersByIdxへ反映
+function autoFillKanriWorkers(){
+  if(!_autoWorker) return;
+  kanriSites.forEach(ks => {
+    rows.forEach((r, idx) => {
+      if((r.type==='work'||r.type==='holi-work') && r.site===ks.site){
+        const cur = (ks.workersByIdx[idx]||'').split('・').map(s=>s.trim()).filter(Boolean);
+        if(!cur.includes(_autoWorker)){
+          cur.unshift(_autoWorker);
+          cur.sort((a,b)=>workerList.indexOf(a)-workerList.indexOf(b));
+          ks.workersByIdx[idx] = cur.join('・');
+        }
+      }
+    });
+  });
+}
 
 // 作業者登録
 function addWorker(){
   const inp=document.getElementById('workerInput'), val=inp.value.trim();
   if(!val||workerList.includes(val)){inp.value='';return;}
   workerList.push(val); inp.value='';
-  renderWorkerTags(); renderKanriDays(); saveData();
+  renderWorkerTags(); renderKanriSites(); saveData();
 }
 function removeWorker(name){
   workerList=workerList.filter(w=>w!==name);
-  kanriBulkSelected=kanriBulkSelected.filter(w=>w!==name);
-  renderWorkerTags(); renderKanriDays(); saveData();
+  removeWorkerFromKanri(name);
+  if(_autoWorker===name)_autoWorker='';
+  renderWorkerTags(); renderKanriSites(); saveData();
 }
 function renderWorkerTags(){
-  document.getElementById('workerTagList').innerHTML=workerList.map(w=>
-    `<span style="display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);border-radius:20px;padding:4px 12px;font-size:13px;">
-      ${w}<button onclick="removeWorker(${JSON.stringify(w)})" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:0;">×</button>
-    </span>`).join('');
+  const _wt=document.getElementById('workerTagList');
+  _wt.innerHTML='';
+  workerList.forEach(w=>{
+    const span=document.createElement('span');
+    span.style.cssText='display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);border-radius:20px;padding:4px 12px;font-size:13px;';
+    const txt=document.createTextNode(w);
+    const btn=document.createElement('button');
+    btn.textContent='×';
+    btn.style.cssText='background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:0;';
+    btn.addEventListener('click',()=>removeWorker(w));
+    span.appendChild(txt);span.appendChild(btn);_wt.appendChild(span);
+  });
+  const cnt=document.getElementById('workerCount');
+  if(cnt)cnt.textContent=workerList.length?`${workerList.length}人登録済み`:'';
 }
 
+// 現場追加用セレクト（未追加の現場のみ）
 function updateKanriSiteSelect(){
-  const sel=document.getElementById('kanriSiteSelect');
-  const cur=sel.value;
+  const sel=document.getElementById('kanriAddSiteSelect');
+  if(!sel)return;
+  const used=kanriSites.map(ks=>ks.site);
   sel.innerHTML='<option value="">-- 現場を選択 --</option>';
-  siteList.forEach(s=>sel.innerHTML+=`<option value="${s}" ${s===cur?'selected':''}>${s}</option>`);
-  if(cur&&siteList.includes(cur))sel.value=cur;
+  siteList.filter(s=>!used.includes(s)).forEach(s=>sel.innerHTML+=`<option value="${s}">${s}</option>`);
 }
 
-function getKanriDays(){
-  const site=document.getElementById('kanriSiteSelect').value;
-  if(!site)return [];
+function addKanriSite(){
+  const sel=document.getElementById('kanriAddSiteSelect');
+  const site=sel.value;
+  if(!site){showToast('⚠️ 現場を選択してください');return;}
+  if(kanriSites.some(ks=>ks.site===site))return;
+  kanriSites.push({site,tanto:'',workersByIdx:{},extraDays:[],_bulk:[],_open:true});
+  renderKanriSites(); updateKanriBtn(); saveData();
+}
+function removeKanriSite(si){
+  if(!confirm(`「${kanriSites[si].site}」の日程表を削除しますか？`))return;
+  kanriSites.splice(si,1);
+  renderKanriSites(); updateKanriBtn(); saveData();
+}
+function toggleKanriSiteOpen(si){
+  kanriSites[si]._open=!kanriSites[si]._open;
+  renderKanriSites();
+}
+function toggleKanriAutoOpen(si,idx){
+  const ks=kanriSites[si];if(!ks)return;
+  ks._openDays=ks._openDays||{};
+  ks._openDays[idx]=!ks._openDays[idx];
+  renderKanriSites();
+}
+function updateKanriTanto(si,val){
+  if(kanriSites[si]){kanriSites[si].tanto=val;saveData();}
+}
+
+// 現場ごとの出勤日（rows由来）
+function getKanriDays(site){
   const out=[];
   rows.forEach((r,i)=>{
     if((r.type==='work'||r.type==='holi-work')&&r.site===site)out.push({idx:i,row:r});
@@ -575,24 +679,62 @@ function getKanriDays(){
   return out;
 }
 
-// 選択状態の取得/トグル（kanriWorkersByIdxは「三浦・海本」形式の文字列）
-function getSelectedWorkers(idx){
-  return (kanriWorkersByIdx[idx]||'').split('・').map(s=>s.trim()).filter(Boolean);
+function getSelectedWorkers(si,idx){
+  return ((kanriSites[si].workersByIdx||{})[idx]||'').split('・').map(s=>s.trim()).filter(Boolean);
 }
-function toggleKanriWorker(idx,name){
-  let sel=getSelectedWorkers(idx);
+function toggleKanriWorker(si,idx,name){
+  const ks=kanriSites[si];if(!ks)return;
+  let sel=getSelectedWorkers(si,idx);
   if(sel.includes(name))sel=sel.filter(w=>w!==name);
   else sel.push(name);
-  // 登録順に並べ替え
   sel.sort((a,b)=>workerList.indexOf(a)-workerList.indexOf(b));
-  kanriWorkersByIdx[idx]=sel.join('・');
-  renderKanriDays(); saveData();
+  ks.workersByIdx[idx]=sel.join('・');
+  renderKanriSites(); saveData();
 }
-function toggleBulkWorker(name){
-  if(kanriBulkSelected.includes(name))kanriBulkSelected=kanriBulkSelected.filter(w=>w!==name);
-  else kanriBulkSelected.push(name);
-  kanriBulkSelected.sort((a,b)=>workerList.indexOf(a)-workerList.indexOf(b));
-  renderKanriBulkChips();
+function toggleBulkWorker(si,name){
+  const ks=kanriSites[si];if(!ks)return;
+  ks._bulk=ks._bulk||[];
+  if(ks._bulk.includes(name))ks._bulk=ks._bulk.filter(w=>w!==name);
+  else ks._bulk.push(name);
+  ks._bulk.sort((a,b)=>workerList.indexOf(a)-workerList.indexOf(b));
+  renderKanriSites();
+}
+function applyKanriBulk(si){
+  const ks=kanriSites[si];if(!ks)return;
+  if(!(ks._bulk||[]).length){showToast('⚠️ 作業者を選択してください');return;}
+  const val=ks._bulk.join('・');
+  getKanriDays(ks.site).forEach(({idx})=>{ks.workersByIdx[idx]=val;});
+  renderKanriSites(); saveData();
+  showToast('✅ 全日に適用しました');
+}
+
+// 追加日
+function addKanriExtraDay(si){
+  const ks=kanriSites[si];if(!ks)return;
+  const ym=document.getElementById('yearmonth').value;
+  ks.extraDays.push({date:ym?`${ym}-16`:'',start:'08:00',end:'18:00',workers:'',_open:true});
+  renderKanriSites(); saveData();
+}
+function removeKanriExtraDay(si,ei){
+  kanriSites[si].extraDays.splice(ei,1);
+  renderKanriSites(); saveData();
+}
+function updateKanriExtraDay(si,ei,key,val){
+  const ed=kanriSites[si]?.extraDays[ei];
+  if(ed){ed[key]=val;saveData();}
+}
+function toggleKanriExtraOpen(si,ei){
+  const ed=kanriSites[si]?.extraDays[ei];
+  if(ed){ed._open=!ed._open;renderKanriSites();}
+}
+function toggleKanriExtraWorker(si,ei,name){
+  const ed=kanriSites[si]?.extraDays[ei];if(!ed)return;
+  let sel=(ed.workers||'').split('・').map(s=>s.trim()).filter(Boolean);
+  if(sel.includes(name))sel=sel.filter(w=>w!==name);
+  else sel.push(name);
+  sel.sort((a,b)=>workerList.indexOf(a)-workerList.indexOf(b));
+  ed.workers=sel.join('・');
+  renderKanriSites(); saveData();
 }
 
 function chipHtml(name,on,onclick){
@@ -603,43 +745,141 @@ function chipHtml(name,on,onclick){
     color:${on?'var(--accent)':'var(--text-muted)'};">${name}</button>`;
 }
 
-function renderKanriBulkChips(){
-  const c=document.getElementById('kanriBulkChips');
-  if(!workerList.length){c.innerHTML='<span style="font-size:12px;color:var(--text-muted);">↑ 先に作業者を登録してください</span>';return;}
-  c.innerHTML=workerList.map(w=>chipHtml(w,kanriBulkSelected.includes(w),`toggleBulkWorker(${JSON.stringify(w).replace(/"/g,'&quot;')})`)).join('');
-}
+// 全現場カードの描画
+function renderKanriSites(){
+  updateKanriSiteSelect();
+  const c=document.getElementById('kanriSiteList');
+  if(!c)return;
+  c.innerHTML='';
+  kanriSites.forEach((ks,si)=>{
+    const open=ks._open!==false;
+    const days=getKanriDays(ks.site);
+    const total=days.length+ks.extraDays.filter(ed=>ed.date).length;
+    const card=document.createElement('div');
+    card.style.cssText='display:flex;flex-direction:column;background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;';
 
-function renderKanriDays(){
-  const section=document.getElementById('kanriDaySection');
-  const list=document.getElementById('kanriDayList');
-  const days=getKanriDays();
-  if(!days.length){section.style.display='none';list.innerHTML='';return;}
-  section.style.display='';
-  renderKanriBulkChips();
-  list.innerHTML='';
-  days.forEach(({idx,row})=>{
-    const d=row.date, dateStr=`${d.getMonth()+1}/${d.getDate()}`;
-    const youbi=YOUBI[d.getDay()];
-    const sel=getSelectedWorkers(idx);
-    const div=document.createElement('div');
-    div.style.cssText='display:flex;gap:8px;align-items:flex-start;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:8px 10px;';
-    const chips=workerList.length
-      ? workerList.map(w=>chipHtml(w,sel.includes(w),`toggleKanriWorker(${idx},${JSON.stringify(w).replace(/"/g,'&quot;')})`)).join('')
-      : '<span style="font-size:12px;color:var(--text-muted);">作業者未登録</span>';
-    div.innerHTML=`
-      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-muted);min-width:58px;padding-top:7px;">${dateStr}(${youbi})</span>
-      <div style="flex:1;display:flex;flex-wrap:wrap;gap:6px;">${chips}</div>`;
-    list.appendChild(div);
+    // ヘッダー
+    let inner=`
+      <div onclick="toggleKanriSiteOpen(${si})" style="display:flex;gap:8px;align-items:center;padding:10px 12px;cursor:pointer;user-select:none;background:var(--surface);">
+        <span style="flex:1;font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${ks.site}</span>
+        <span style="font-size:11px;color:var(--text-muted);">${total}日</span>
+        <span style="color:var(--text-muted);font-size:12px;transform:rotate(${open?90:0}deg);transition:transform .2s;">▶</span>
+        <button onclick="event.stopPropagation();removeKanriSite(${si})"
+          style="padding:2px 8px;border-radius:8px;border:1.5px solid var(--border);background:transparent;color:var(--text-muted);font-size:14px;cursor:pointer;">×</button>
+      </div>`;
+
+    if(open){
+      // 担当者
+      inner+=`
+      <div style="display:flex;flex-direction:column;gap:12px;padding:12px;border-top:1px solid var(--border);">
+        <div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">担当者</div>
+          <input type="text" value="${(ks.tanto||'').replace(/"/g,'&quot;')}" placeholder="担当者名を入力"
+            style="width:100%;box-sizing:border-box;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;"
+            oninput="updateKanriTanto(${si},this.value)" onchange="updateKanriTanto(${si},this.value)">
+        </div>`;
+
+      // 一括選択
+      const bulk=ks._bulk||[];
+      const bulkChips=workerList.length
+        ? workerList.map(w=>chipHtml(w,bulk.includes(w),`toggleBulkWorker(${si},${JSON.stringify(w).replace(/"/g,'&quot;')})`)).join('')
+        : '<span style="font-size:12px;color:var(--text-muted);">↑ 先に作業者を登録してください</span>';
+      inner+=`
+        <div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">一括選択（全日に適用）</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;">${bulkChips}</div>
+          <button onclick="applyKanriBulk(${si})" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">一括適用</button>
+        </div>`;
+
+      // 日別リスト（rows由来＋追加日を日付順マージ）
+      const entries=[];
+      days.forEach(({idx,row})=>entries.push({kind:'auto',idx,date:row.date}));
+      ks.extraDays.forEach((ed,ei)=>{
+        const d=ed.date?new Date(ed.date+'T00:00:00'):new Date(8640000000000000);
+        entries.push({kind:'extra',ei,date:d,ed});
+      });
+      entries.sort((a,b)=>a.date-b.date);
+
+      let dayHtml='';
+      entries.forEach(ent=>{
+        if(ent.kind==='auto'){
+          const idx=ent.idx, d=ent.date;
+          const dateStr=`${d.getMonth()+1}/${d.getDate()}`;
+          const youbi=YOUBI[d.getDay()];
+          const sel=getSelectedWorkers(si,idx);
+          const dOpen=!!(ks._openDays||{})[idx];
+          const r=rows[idx]||{};
+          const summary=sel.length?sel.join('・'):'<span style="font-style:italic;">未入力</span>';
+          const chips=workerList.length
+            ? workerList.map(w=>chipHtml(w,sel.includes(w),`toggleKanriWorker(${si},${idx},${JSON.stringify(w).replace(/"/g,'&quot;')})`)).join('')
+            : '<span style="font-size:12px;color:var(--text-muted);">作業者未登録</span>';
+          dayHtml+=`
+            <div style="display:flex;flex-direction:column;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;">
+              <div onclick="toggleKanriAutoOpen(${si},${idx})" style="display:flex;gap:8px;align-items:center;padding:8px 10px;cursor:pointer;user-select:none;">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-muted);min-width:58px;">${dateStr}(${youbi})</span>
+                <span style="flex:1;font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${summary}</span>
+                <span style="font-size:11px;color:var(--text-muted);">${r.start||''}〜${r.end||''}</span>
+                <span style="color:var(--text-muted);font-size:12px;transform:rotate(${dOpen?90:0}deg);transition:transform .2s;">▶</span>
+              </div>
+              <div style="display:${dOpen?'flex':'none'};flex-wrap:wrap;gap:6px;padding:0 10px 10px;border-top:1px solid var(--border);padding-top:${dOpen?'8px':'0'};">${chips}</div>
+            </div>`;
+        }else{
+          const ei=ent.ei, ed=ent.ed;
+          const sel=(ed.workers||'').split('・').map(s=>s.trim()).filter(Boolean);
+          const edOpen=!!ed._open;
+          let dateLabel='日付未設定', youbiLabel='';
+          if(ed.date){
+            const dd=new Date(ed.date+'T00:00:00');
+            dateLabel=`${dd.getMonth()+1}/${dd.getDate()}`;
+            youbiLabel=`(${YOUBI[dd.getDay()]})`;
+          }
+          const summary=sel.length?sel.join('・'):'<span style="font-style:italic;">未入力</span>';
+          const chips=workerList.length
+            ? workerList.map(w=>chipHtml(w,sel.includes(w),`toggleKanriExtraWorker(${si},${ei},${JSON.stringify(w).replace(/"/g,'&quot;')})`)).join('')
+            : '<span style="font-size:12px;color:var(--text-muted);">作業者未登録</span>';
+          dayHtml+=`
+            <div style="display:flex;flex-direction:column;background:var(--surface);border:1.5px dashed var(--accent);border-radius:10px;overflow:hidden;">
+              <div onclick="toggleKanriExtraOpen(${si},${ei})" style="display:flex;gap:8px;align-items:center;padding:8px 10px;cursor:pointer;user-select:none;">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);min-width:58px;">${dateLabel}${youbiLabel}</span>
+                <span style="flex:1;font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${summary}</span>
+                <span style="font-size:11px;color:var(--text-muted);">${ed.start||''}〜${ed.end||''}</span>
+                <span style="color:var(--text-muted);font-size:12px;transform:rotate(${edOpen?90:0}deg);transition:transform .2s;">▶</span>
+                <button onclick="event.stopPropagation();removeKanriExtraDay(${si},${ei})"
+                  style="padding:2px 8px;border-radius:8px;border:1.5px solid var(--border);background:transparent;color:var(--text-muted);font-size:14px;cursor:pointer;">×</button>
+              </div>
+              <div style="display:${edOpen?'flex':'none'};flex-direction:column;gap:8px;padding:0 10px 10px;border-top:1px solid var(--border);">
+                <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding-top:8px;">
+                  <input type="date" value="${ed.date||''}"
+                    style="background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:13px;padding:6px 8px;outline:none;"
+                    onchange="updateKanriExtraDay(${si},${ei},'date',this.value);renderKanriSites()">
+                  <input type="time" value="${ed.start||'08:00'}"
+                    style="background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;padding:6px 6px;outline:none;"
+                    onchange="updateKanriExtraDay(${si},${ei},'start',this.value);renderKanriSites()">
+                  <span style="color:var(--text-muted);font-size:12px;">〜</span>
+                  <input type="time" value="${ed.end||'18:00'}"
+                    style="background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;padding:6px 6px;outline:none;"
+                    onchange="updateKanriExtraDay(${si},${ei},'end',this.value);renderKanriSites()">
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;">${chips}</div>
+              </div>
+            </div>`;
+        }
+      });
+
+      inner+=`
+        <div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">日にちごとの作業者（タップで選択）</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">${dayHtml||'<span style="font-size:12px;color:var(--text-muted);">この現場の出勤日がありません（日別入力で現場を設定するか、日付を追加してください）</span>'}</div>
+          <button onclick="addKanriExtraDay(${si})" style="margin-top:8px;padding:6px 14px;border-radius:8px;border:1.5px solid var(--border);background:transparent;color:var(--text-muted);font-family:'Noto Sans JP',sans-serif;font-size:12px;cursor:pointer;">＋ 日付を追加</button>
+        </div>
+      </div>`;
+    }
+
+    card.innerHTML=inner;
+    c.appendChild(card);
   });
 }
 
-function applyKanriBulk(){
-  if(!kanriBulkSelected.length){showToast('⚠️ 作業者を選択してください');return;}
-  const val=kanriBulkSelected.join('・');
-  getKanriDays().forEach(({idx})=>{kanriWorkersByIdx[idx]=val;});
-  renderKanriDays(); saveData();
-  showToast('✅ 全日に適用しました');
-}
 function clearAll(){
   if(!confirm('この月の入力内容をリセットしますか？'))return;
   rows.forEach(r=>{r.site='';r.task='';r.start='';r.end='';r.hayade='';r.zangyo='';r.type=r.isWeekend?'off':'work';});
@@ -655,9 +895,7 @@ function saveData(){
   try{localStorage.setItem(monthKey(ym),JSON.stringify({
     prevDaikyu:document.getElementById('prevDaikyu').value,
     tantoSites:getTantoSites(),
-    kanriSite:document.getElementById('kanriSiteSelect').value,
-    kanriTanto:document.getElementById('kanriTanto').value,
-    kanriWorkers:kanriWorkersByIdx,
+    kanriSites:kanriSites,
     honninComment: document.getElementById('honninComment').value,
     yoboJiko:      document.getElementById('yoboJiko').value,
     goalShigoto:   document.getElementById('goalShigoto').value,
@@ -675,6 +913,8 @@ function loadGlobal(){
     if(s.name)document.getElementById('name').value=s.name;
     if(s.siteList){siteList=s.siteList;renderSiteTags();updateDatalist();}
     if(s.workerList){workerList=s.workerList;renderWorkerTags();}
+    // 氏名から_autoWorkerを復元
+    if(s.name){const parts=s.name.trim().split(/[\s\u3000]+/);_autoWorker=parts[0]||'';}
     if(s.yearmonth){const sel=document.getElementById('yearmonth');if([...sel.options].some(o=>o.value===s.yearmonth))sel.value=s.yearmonth;}
   }catch(e){}
 }
@@ -709,12 +949,23 @@ function loadMonthData(ym){
       if (s?.prevDaikyu !== undefined) document.getElementById('prevDaikyu').value = s.prevDaikyu;
     }
     if(s?.tantoSites)setTantoSites(s.tantoSites);else setTantoSites([]);
-    // 現場管理日程表
-    updateKanriSiteSelect();
-    if(s?.kanriSite){const sel=document.getElementById('kanriSiteSelect');if([...sel.options].some(o=>o.value===s.kanriSite))sel.value=s.kanriSite;}
-    document.getElementById('kanriTanto').value = s?.kanriTanto || '';
-    // 旧形式(配列)は無視、新形式(オブジェクト)のみ復元
-    kanriWorkersByIdx = (s?.kanriWorkers && !Array.isArray(s.kanriWorkers)) ? s.kanriWorkers : {};
+    // 現場管理日程表（複数現場）
+    if(Array.isArray(s?.kanriSites)){
+      kanriSites = s.kanriSites;
+    }else if(s?.kanriSite){
+      // 旧形式（単一現場）からのマイグレーション
+      kanriSites = [{
+        site: s.kanriSite,
+        tanto: s.kanriTanto || '',
+        workersByIdx: (s.kanriWorkers && !Array.isArray(s.kanriWorkers)) ? s.kanriWorkers : {},
+        extraDays: Array.isArray(s.kanriExtraDays) ? s.kanriExtraDays : [],
+        _bulk: [], _open: true
+      }];
+    }else{
+      kanriSites = [];
+    }
+    kanriSites.forEach(ks=>{ks.workersByIdx=ks.workersByIdx||{};ks.extraDays=ks.extraDays||[];ks._bulk=ks._bulk||[];});
+    renderKanriSites();
     document.getElementById('honninComment').value = s?.honninComment || '';
     document.getElementById('yoboJiko').value      = s?.yoboJiko      || '';
     // 目標は空なら前月からコピー
@@ -738,7 +989,7 @@ function loadMonthData(ym){
 }
 function showSaveIndicator(){const el=document.getElementById('saveIndicator');el.style.opacity='1';clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity='0',1500);}
 ['prevDaikyu'].forEach(id=>{document.getElementById(id).addEventListener('input',saveData);document.getElementById(id).addEventListener('change',saveData);});
-document.getElementById('name').addEventListener('input',saveData);
+// name inputはonNameInput()で処理（inline oninput/onchange）
 document.getElementById('yearmonth').addEventListener('change',()=>{loadMonthData(document.getElementById('yearmonth').value);saveData();});
 
 // ── JSON ──
@@ -925,22 +1176,21 @@ async function gistLoad(silent=false) {
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 
 const KANRI_TMPL_B64 = "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";
-const KANRI_PY_B64   = "aW1wb3J0IG9wZW5weXhsCmZyb20gb3BlbnB5eGwuc3R5bGVzIGltcG9ydCBBbGlnbm1lbnQsIEZvbnQsIEJvcmRlciwgU2lkZQpmcm9tIG9wZW5weXhsLndvcmtzaGVldC5wYWdlIGltcG9ydCBQYWdlTWFyZ2lucwppbXBvcnQgaW8sIGJhc2U2NCwganNvbgpmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRlLCB0aW1lLCB0aW1lZGVsdGEsIGRhdGV0aW1lCgpkZWYgZ2VuZXJhdGVfa2FucmlfcmVwb3J0KGRhdGFfanNvbiwga2FucmlfdG1wbF9iNjQpOgogICAgZGF0YSA9IGpzb24ubG9hZHMoZGF0YV9qc29uKQogICAgbmFtZV92YWwgPSBkYXRhLmdldCgibmFtZSIsICIiKQogICAgeW0gICAgICAgPSBkYXRhLmdldCgieWVhcm1vbnRoIiwgIjIwMjUtMDciKQogICAgc2l0ZSAgICAgPSBkYXRhLmdldCgia2FucmlTaXRlIiwgIiIpCiAgICB0YW50byAgICA9IGRhdGEuZ2V0KCJrYW5yaVRhbnRvIiwgIiIpCiAgICB3b3JrZXJzX2J5X2lkeCA9IGRhdGEuZ2V0KCJrYW5yaVdvcmtlcnNCeUlkeCIsIHt9KQogICAgcm93c19kYXRhID0gZGF0YS5nZXQoInJvd3MiLCBbXSkKICAgIHksIG0gPSBtYXAoaW50LCB5bS5zcGxpdCgiLSIpKQogICAgc3RhcnQgPSBkYXRlKHksIG0sIDE2KQoKICAgICMg6YG45oqe54++5aC044Gu5Ye65Yuk5pel44KS5oq95Ye677yI5pel5Yil5L2c5qWt6ICF5LuY44GN77yJCiAgICB3b3JrX2RheXMgPSBbXQogICAgZm9yIGlkeCwgcm93IGluIGVudW1lcmF0ZShyb3dzX2RhdGEpOgogICAgICAgIGlmIHJvdy5nZXQoInR5cGUiKSBpbiAoIndvcmsiLCJob2xpLXdvcmsiKToKICAgICAgICAgICAgaWYgbm90IHNpdGUgb3Igcm93LmdldCgic2l0ZSIsIiIpID09IHNpdGU6CiAgICAgICAgICAgICAgICBkID0gc3RhcnQgKyB0aW1lZGVsdGEoZGF5cz1pZHgpCiAgICAgICAgICAgICAgICB3ID0gKHdvcmtlcnNfYnlfaWR4LmdldChzdHIoaWR4KSkgb3IgIiIpLnN0cmlwKCkKICAgICAgICAgICAgICAgIHdvcmtfZGF5cy5hcHBlbmQoewogICAgICAgICAgICAgICAgICAgICJkYXRlIjogZCwKICAgICAgICAgICAgICAgICAgICAic3RhcnQiOiByb3cuZ2V0KCJzdGFydCIsIjA4OjAwIiksCiAgICAgICAgICAgICAgICAgICAgImVuZCI6ICAgcm93LmdldCgiZW5kIiwiMTg6MDAiKSwKICAgICAgICAgICAgICAgICAgICAid29ya2VycyI6IHcgaWYgdyBlbHNlICh0YW50byBpZiB0YW50byBlbHNlIG5hbWVfdmFsKSwKICAgICAgICAgICAgICAgIH0pCgogICAgaWYgbm90IHdvcmtfZGF5czoKICAgICAgICByZXR1cm4gTm9uZQoKICAgIHdiID0gb3BlbnB5eGwubG9hZF93b3JrYm9vayhpby5CeXRlc0lPKGJhc2U2NC5iNjRkZWNvZGUoa2FucmlfdG1wbF9iNjQpKSkKICAgIHdzID0gd2Iud29ya3NoZWV0c1swXQoKICAgICMg44OY44OD44OA44O8OiBGMj3nj77loLTlkI0sIEYzPeaLheW9k+iAheWQjQogICAgd3NbIkYyIl0udmFsdWUgPSBzaXRlIGlmIHNpdGUgZWxzZSAiIgogICAgd3NbIkYzIl0udmFsdWUgPSAi5ouF5b2T6ICF44CAIiArICh0YW50byBpZiB0YW50byBlbHNlIG5hbWVfdmFsKQoKICAgICMg5pei5a2Y44OH44O844K/6KGM44KS44Kv44Oq44Ki77yIcm93NuS7pemZje+8iQogICAgZm9yIHIgaW4gcmFuZ2UoNiwgd3MubWF4X3JvdyArIDEpOgogICAgICAgIGZvciBjIGluIHJhbmdlKDEsIDExKToKICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAgY2VsbCA9IHdzLmNlbGwocm93PXIsIGNvbHVtbj1jKQogICAgICAgICAgICAgICAgaWYgdHlwZShjZWxsKS5fX25hbWVfXyAhPSAiTWVyZ2VkQ2VsbCI6CiAgICAgICAgICAgICAgICAgICAgY2VsbC52YWx1ZSA9IE5vbmUKICAgICAgICAgICAgZXhjZXB0OgogICAgICAgICAgICAgICAgcGFzcwoKICAgIHRoaW4gPSBTaWRlKHN0eWxlPSJ0aGluIikKICAgIGJvcmRlciA9IEJvcmRlcihsZWZ0PXRoaW4sIHJpZ2h0PXRoaW4sIHRvcD10aGluLCBib3R0b209dGhpbikKCiAgICBkZWYgY2FsY19ob3VycyhzdGFydF9zLCBlbmRfcyk6CiAgICAgICAgdHJ5OgogICAgICAgICAgICBzaCwgc20gPSBtYXAoaW50LCBzdGFydF9zLnNwbGl0KCI6IikpCiAgICAgICAgICAgIGVoLCBlbSA9IG1hcChpbnQsIGVuZF9zLnNwbGl0KCI6IikpCiAgICAgICAgICAgIHJldHVybiAoZWggKiA2MCArIGVtIC0gc2ggKiA2MCAtIHNtKSAvIDYwCiAgICAgICAgZXhjZXB0OgogICAgICAgICAgICByZXR1cm4gMC4wCgogICAgZGVmIGNvdW50X3dvcmtlcnModyk6CiAgICAgICAgIyDjgIzjg7vjgI3jgIws44CN44CM44CB44CN5Yy65YiH44KK44Gn5Lq65pWw44Kr44Km44Oz44OICiAgICAgICAgaWYgbm90IHc6IHJldHVybiAxCiAgICAgICAgZm9yIHNlcCBpbiBbIuODuyIsICLjgIEiLCAiLCJdOgogICAgICAgICAgICB3ID0gdy5yZXBsYWNlKHNlcCwgIlxuIikKICAgICAgICByZXR1cm4gbWF4KDEsIGxlbihbeCBmb3IgeCBpbiB3LnNwbGl0KCJcbiIpIGlmIHguc3RyaXAoKV0pKQoKICAgIHRvdGFsX3N1bSA9IDAuMAogICAgZm9yIGksIHdkIGluIGVudW1lcmF0ZSh3b3JrX2RheXMpOgogICAgICAgIHIgPSA2ICsgaQogICAgICAgIGQgPSB3ZFsiZGF0ZSJdCiAgICAgICAgcyA9IHdkWyJzdGFydCJdCiAgICAgICAgZSA9IHdkWyJlbmQiXQogICAgICAgIHcgPSB3ZFsid29ya2VycyJdCiAgICAgICAgdG90ID0gY2FsY19ob3VycyhzLCBlKSAqIGNvdW50X3dvcmtlcnModykKICAgICAgICB0b3RhbF9zdW0gKz0gdG90CgogICAgICAgICMgQeWIlzog5pel5LuYCiAgICAgICAgdHJ5OgogICAgICAgICAgICBjID0gd3MuY2VsbChyb3c9ciwgY29sdW1uPTEpCiAgICAgICAgICAgIGlmIHR5cGUoYykuX19uYW1lX18gIT0gIk1lcmdlZENlbGwiOgogICAgICAgICAgICAgICAgYy52YWx1ZSA9IGRhdGV0aW1lKGQueWVhciwgZC5tb250aCwgZC5kYXkpCiAgICAgICAgICAgICAgICBjLm51bWJlcl9mb3JtYXQgPSAibS9kKGFhYSkiCiAgICAgICAgICAgICAgICBjLmJvcmRlciA9IGJvcmRlcgogICAgICAgICAgICAgICAgYy5hbGlnbm1lbnQgPSBBbGlnbm1lbnQoaG9yaXpvbnRhbD0iY2VudGVyIiwgdmVydGljYWw9ImNlbnRlciIpCiAgICAgICAgZXhjZXB0OiBwYXNzCgogICAgICAgICMgQuWIlzog5rCP5ZCN77yI5pel5Yil77yJCiAgICAgICAgdHJ5OgogICAgICAgICAgICBjID0gd3MuY2VsbChyb3c9ciwgY29sdW1uPTIpCiAgICAgICAgICAgIGlmIHR5cGUoYykuX19uYW1lX18gIT0gIk1lcmdlZENlbGwiOgogICAgICAgICAgICAgICAgYy52YWx1ZSA9IHcKICAgICAgICAgICAgICAgIGMuYm9yZGVyID0gYm9yZGVyCiAgICAgICAgICAgICAgICBjLmFsaWdubWVudCA9IEFsaWdubWVudChob3Jpem9udGFsPSJjZW50ZXIiLCB2ZXJ0aWNhbD0iY2VudGVyIiwgd3JhcF90ZXh0PVRydWUpCiAgICAgICAgZXhjZXB0OiBwYXNzCgogICAgICAgICMgQ+WIlzog6ZaL5aeL5pmC6ZaTCiAgICAgICAgdHJ5OgogICAgICAgICAgICBjID0gd3MuY2VsbChyb3c9ciwgY29sdW1uPTMpCiAgICAgICAgICAgIGlmIHR5cGUoYykuX19uYW1lX18gIT0gIk1lcmdlZENlbGwiOgogICAgICAgICAgICAgICAgc2gsIHNtID0gbWFwKGludCwgcy5zcGxpdCgiOiIpKQogICAgICAgICAgICAgICAgYy52YWx1ZSA9IHRpbWUoc2gsIHNtKQogICAgICAgICAgICAgICAgYy5udW1iZXJfZm9ybWF0ID0gImg6bW0iCiAgICAgICAgICAgICAgICBjLmJvcmRlciA9IGJvcmRlcgogICAgICAgICAgICAgICAgYy5hbGlnbm1lbnQgPSBBbGlnbm1lbnQoaG9yaXpvbnRhbD0iY2VudGVyIiwgdmVydGljYWw9ImNlbnRlciIpCiAgICAgICAgZXhjZXB0OiBwYXNzCgogICAgICAgICMgROWIlzog57WC5LqG5pmC6ZaTCiAgICAgICAgdHJ5OgogICAgICAgICAgICBjID0gd3MuY2VsbChyb3c9ciwgY29sdW1uPTQpCiAgICAgICAgICAgIGlmIHR5cGUoYykuX19uYW1lX18gIT0gIk1lcmdlZENlbGwiOgogICAgICAgICAgICAgICAgZWgsIGVtID0gbWFwKGludCwgZS5zcGxpdCgiOiIpKQogICAgICAgICAgICAgICAgYy52YWx1ZSA9IHRpbWUoZWgsIGVtKQogICAgICAgICAgICAgICAgYy5udW1iZXJfZm9ybWF0ID0gImg6bW0iCiAgICAgICAgICAgICAgICBjLmJvcmRlciA9IGJvcmRlcgogICAgICAgICAgICAgICAgYy5hbGlnbm1lbnQgPSBBbGlnbm1lbnQoaG9yaXpvbnRhbD0iY2VudGVyIiwgdmVydGljYWw9ImNlbnRlciIpCiAgICAgICAgZXhjZXB0OiBwYXNzCgogICAgICAgICMgReWIlzog44OI44O844K/44Or77yI5pmC6ZaTw5fkurrmlbDvvIkKICAgICAgICB0cnk6CiAgICAgICAgICAgIGMgPSB3cy5jZWxsKHJvdz1yLCBjb2x1bW49NSkKICAgICAgICAgICAgaWYgdHlwZShjKS5fX25hbWVfXyAhPSAiTWVyZ2VkQ2VsbCI6CiAgICAgICAgICAgICAgICBjLnZhbHVlID0gdG90CiAgICAgICAgICAgICAgICBjLm51bWJlcl9mb3JtYXQgPSAiMC4wIgogICAgICAgICAgICAgICAgYy5ib3JkZXIgPSBib3JkZXIKICAgICAgICAgICAgICAgIGMuYWxpZ25tZW50ID0gQWxpZ25tZW50KGhvcml6b250YWw9ImNlbnRlciIsIHZlcnRpY2FsPSJjZW50ZXIiKQogICAgICAgIGV4Y2VwdDogcGFzcwoKICAgICAgICAjIEbjgJxJ5YiXOiDlirTli5nosrvjg7vntYzosrvjg7vlkIjoqIjjg7vmpJzljbAgKOepuueZvSvnvavnt5opCiAgICAgICAgZm9yIGNvbCBpbiBbNiwgNywgOCwgOV06CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIGMgPSB3cy5jZWxsKHJvdz1yLCBjb2x1bW49Y29sKQogICAgICAgICAgICAgICAgaWYgdHlwZShjKS5fX25hbWVfXyAhPSAiTWVyZ2VkQ2VsbCI6CiAgICAgICAgICAgICAgICAgICAgYy5ib3JkZXIgPSBib3JkZXIKICAgICAgICAgICAgZXhjZXB0OiBwYXNzCgogICAgIyDlkIjoqIjooYwKICAgIHN1bV9yb3cgPSA2ICsgbGVuKHdvcmtfZGF5cykKICAgIHRyeToKICAgICAgICB3cy5jZWxsKHJvdz1zdW1fcm93LCBjb2x1bW49NCkudmFsdWUgPSAi6KiIIgogICAgICAgIHdzLmNlbGwocm93PXN1bV9yb3csIGNvbHVtbj01KS52YWx1ZSA9IHRvdGFsX3N1bQogICAgICAgIHdzLmNlbGwocm93PXN1bV9yb3csIGNvbHVtbj01KS5udW1iZXJfZm9ybWF0ID0gIjAuMCIKICAgIGV4Y2VwdDogcGFzcwoKICAgICMg5Y2w5Yi36Kit5a6aCiAgICB3cy5wcmludF9hcmVhID0gZiJBMTpKe3N1bV9yb3d9IgogICAgd3MucGFnZV9zZXR1cC5vcmllbnRhdGlvbiA9ICJwb3J0cmFpdCIKICAgIHdzLnBhZ2Vfc2V0dXAucGFwZXJTaXplID0gOQogICAgd3MucGFnZV9zZXR1cC5maXRUb1dpZHRoID0gMQogICAgd3MucGFnZV9zZXR1cC5maXRUb0hlaWdodCA9IDEKICAgIHdzLnBhZ2VfbWFyZ2lucyA9IFBhZ2VNYXJnaW5zKGxlZnQ9MC41LCByaWdodD0wLjUsIHRvcD0wLjc1LCBib3R0b209MC43NSkKCiAgICBidWYgPSBpby5CeXRlc0lPKCkKICAgIHdiLnNhdmUoYnVmKQogICAgcmV0dXJuIGJhc2U2NC5iNjRlbmNvZGUoYnVmLmdldHZhbHVlKCkpLmRlY29kZSgpCg==";
+const KANRI_PY_B64   = "aW1wb3J0IG9wZW5weXhsCmZyb20gb3BlbnB5eGwuc3R5bGVzIGltcG9ydCBBbGlnbm1lbnQsIEZvbnQsIEJvcmRlciwgU2lkZQpmcm9tIG9wZW5weXhsLndvcmtzaGVldC5wYWdlIGltcG9ydCBQYWdlTWFyZ2lucwpmcm9tIGNvcHkgaW1wb3J0IGNvcHkKaW1wb3J0IGlvLCBiYXNlNjQsIGpzb24KZnJvbSBkYXRldGltZSBpbXBvcnQgZGF0ZSwgdGltZSwgdGltZWRlbHRhLCBkYXRldGltZQoKZGVmIF9maWxsX3NoZWV0KHdzLCBzaXRlLCB0YW50bywgd29ya19kYXlzKToKICAgICIiIjHjgrfjg7zjg4jliIbjga7ml6XnqIvooajjgpLmm7jjgY3ovrzjgoAiIiIKICAgIGZhbGxiYWNrID0gdGFudG8KCiAgICB3c1siRjIiXS52YWx1ZSA9IHNpdGUgaWYgc2l0ZSBlbHNlICIiCiAgICB3c1siRjMiXS52YWx1ZSA9ICLmi4XlvZPogIXjgIDjgIDjgIAiICsgdGFudG8KCiAgICAjIOaXouWtmOODh+ODvOOCv+ihjOOCkuOCr+ODquOCou+8iHJvdzbku6XpmY3vvIkKICAgIGZvciByIGluIHJhbmdlKDYsIHdzLm1heF9yb3cgKyAxKToKICAgICAgICBmb3IgYyBpbiByYW5nZSgxLCAxMSk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIGNlbGwgPSB3cy5jZWxsKHJvdz1yLCBjb2x1bW49YykKICAgICAgICAgICAgICAgIGlmIHR5cGUoY2VsbCkuX19uYW1lX18gIT0gIk1lcmdlZENlbGwiOgogICAgICAgICAgICAgICAgICAgIGNlbGwudmFsdWUgPSBOb25lCiAgICAgICAgICAgIGV4Y2VwdDoKICAgICAgICAgICAgICAgIHBhc3MKCiAgICB0aGluID0gU2lkZShzdHlsZT0idGhpbiIpCiAgICBib3JkZXIgPSBCb3JkZXIobGVmdD10aGluLCByaWdodD10aGluLCB0b3A9dGhpbiwgYm90dG9tPXRoaW4pCgogICAgZGVmIGNhbGNfaG91cnMoc3RhcnRfcywgZW5kX3MpOgogICAgICAgIHRyeToKICAgICAgICAgICAgc2gsIHNtID0gbWFwKGludCwgc3RhcnRfcy5zcGxpdCgiOiIpKQogICAgICAgICAgICBlaCwgZW0gPSBtYXAoaW50LCBlbmRfcy5zcGxpdCgiOiIpKQogICAgICAgICAgICByYXcgPSAoZWggKiA2MCArIGVtIC0gc2ggKiA2MCAtIHNtKSAvIDYwCiAgICAgICAgICAgICMg5Yuk5YuZNuaZgumWk+i2heOBr+aYvOS8keaGqTHmmYLplpPjgpLmjqfpmaTvvIg4OjAw44CcMTg6MDAg4oaSIDnmmYLplpPvvIkKICAgICAgICAgICAgaWYgcmF3ID4gNjoKICAgICAgICAgICAgICAgIHJhdyAtPSAxLjAKICAgICAgICAgICAgcmV0dXJuIG1heCgwLjAsIHJhdykKICAgICAgICBleGNlcHQ6CiAgICAgICAgICAgIHJldHVybiAwLjAKCiAgICBkZWYgY291bnRfd29ya2Vycyh3KToKICAgICAgICBpZiBub3QgdzogcmV0dXJuIDEKICAgICAgICBmb3Igc2VwIGluIFsi44O7IiwgIuOAgSIsICIsIl06CiAgICAgICAgICAgIHcgPSB3LnJlcGxhY2Uoc2VwLCAiXG4iKQogICAgICAgIHJldHVybiBtYXgoMSwgbGVuKFt4IGZvciB4IGluIHcuc3BsaXQoIlxuIikgaWYgeC5zdHJpcCgpXSkpCgogICAgdG90YWxfc3VtID0gMC4wCiAgICBmb3IgaSwgd2QgaW4gZW51bWVyYXRlKHdvcmtfZGF5cyk6CiAgICAgICAgciA9IDYgKyBpCiAgICAgICAgZCA9IHdkWyJkYXRlIl0KICAgICAgICBzID0gd2RbInN0YXJ0Il0KICAgICAgICBlID0gd2RbImVuZCJdCiAgICAgICAgdyA9IHdkWyJ3b3JrZXJzIl0KICAgICAgICB0b3QgPSBjYWxjX2hvdXJzKHMsIGUpICogY291bnRfd29ya2Vycyh3KQogICAgICAgIHRvdGFsX3N1bSArPSB0b3QKCiAgICAgICAgIyBB5YiXOiDml6Xku5jvvIjmm5zml6XjgarjgZfvvIkKICAgICAgICB0cnk6CiAgICAgICAgICAgIGMgPSB3cy5jZWxsKHJvdz1yLCBjb2x1bW49MSkKICAgICAgICAgICAgaWYgdHlwZShjKS5fX25hbWVfXyAhPSAiTWVyZ2VkQ2VsbCI6CiAgICAgICAgICAgICAgICBjLnZhbHVlID0gZGF0ZXRpbWUoZC55ZWFyLCBkLm1vbnRoLCBkLmRheSkKICAgICAgICAgICAgICAgIGMubnVtYmVyX2Zvcm1hdCA9ICJtL2QiCiAgICAgICAgICAgICAgICBjLmJvcmRlciA9IGJvcmRlcgogICAgICAgICAgICAgICAgYy5hbGlnbm1lbnQgPSBBbGlnbm1lbnQoaG9yaXpvbnRhbD0iY2VudGVyIiwgdmVydGljYWw9ImNlbnRlciIpCiAgICAgICAgZXhjZXB0OiBwYXNzCgogICAgICAgICMgQuWIlzog5rCP5ZCNCiAgICAgICAgdHJ5OgogICAgICAgICAgICBjID0gd3MuY2VsbChyb3c9ciwgY29sdW1uPTIpCiAgICAgICAgICAgIGlmIHR5cGUoYykuX19uYW1lX18gIT0gIk1lcmdlZENlbGwiOgogICAgICAgICAgICAgICAgYy52YWx1ZSA9IHcKICAgICAgICAgICAgICAgIGMuYm9yZGVyID0gYm9yZGVyCiAgICAgICAgICAgICAgICBjLmFsaWdubWVudCA9IEFsaWdubWVudChob3Jpem9udGFsPSJjZW50ZXIiLCB2ZXJ0aWNhbD0iY2VudGVyIiwgd3JhcF90ZXh0PVRydWUpCiAgICAgICAgZXhjZXB0OiBwYXNzCgogICAgICAgICMgQ+WIlzog6ZaL5aeL5pmC6ZaTCiAgICAgICAgdHJ5OgogICAgICAgICAgICBjID0gd3MuY2VsbChyb3c9ciwgY29sdW1uPTMpCiAgICAgICAgICAgIGlmIHR5cGUoYykuX19uYW1lX18gIT0gIk1lcmdlZENlbGwiOgogICAgICAgICAgICAgICAgc2gsIHNtID0gbWFwKGludCwgcy5zcGxpdCgiOiIpKQogICAgICAgICAgICAgICAgYy52YWx1ZSA9IHRpbWUoc2gsIHNtKQogICAgICAgICAgICAgICAgYy5udW1iZXJfZm9ybWF0ID0gImg6bW0iCiAgICAgICAgICAgICAgICBjLmJvcmRlciA9IGJvcmRlcgogICAgICAgICAgICAgICAgYy5hbGlnbm1lbnQgPSBBbGlnbm1lbnQoaG9yaXpvbnRhbD0iY2VudGVyIiwgdmVydGljYWw9ImNlbnRlciIpCiAgICAgICAgZXhjZXB0OiBwYXNzCgogICAgICAgICMgROWIlzog57WC5LqG5pmC6ZaTCiAgICAgICAgdHJ5OgogICAgICAgICAgICBjID0gd3MuY2VsbChyb3c9ciwgY29sdW1uPTQpCiAgICAgICAgICAgIGlmIHR5cGUoYykuX19uYW1lX18gIT0gIk1lcmdlZENlbGwiOgogICAgICAgICAgICAgICAgZWgsIGVtID0gbWFwKGludCwgZS5zcGxpdCgiOiIpKQogICAgICAgICAgICAgICAgYy52YWx1ZSA9IHRpbWUoZWgsIGVtKQogICAgICAgICAgICAgICAgYy5udW1iZXJfZm9ybWF0ID0gImg6bW0iCiAgICAgICAgICAgICAgICBjLmJvcmRlciA9IGJvcmRlcgogICAgICAgICAgICAgICAgYy5hbGlnbm1lbnQgPSBBbGlnbm1lbnQoaG9yaXpvbnRhbD0iY2VudGVyIiwgdmVydGljYWw9ImNlbnRlciIpCiAgICAgICAgZXhjZXB0OiBwYXNzCgogICAgICAgICMgReWIlzog44OI44O844K/44Or77yI5pmC6ZaTw5fkurrmlbDvvIkKICAgICAgICB0cnk6CiAgICAgICAgICAgIGMgPSB3cy5jZWxsKHJvdz1yLCBjb2x1bW49NSkKICAgICAgICAgICAgaWYgdHlwZShjKS5fX25hbWVfXyAhPSAiTWVyZ2VkQ2VsbCI6CiAgICAgICAgICAgICAgICBjLnZhbHVlID0gdG90CiAgICAgICAgICAgICAgICBjLm51bWJlcl9mb3JtYXQgPSAiMC4wIgogICAgICAgICAgICAgICAgYy5ib3JkZXIgPSBib3JkZXIKICAgICAgICAgICAgICAgIGMuYWxpZ25tZW50ID0gQWxpZ25tZW50KGhvcml6b250YWw9ImNlbnRlciIsIHZlcnRpY2FsPSJjZW50ZXIiKQogICAgICAgIGV4Y2VwdDogcGFzcwoKICAgICAgICAjIEbjgJxJ5YiXOiDlirTli5nosrvjg7vntYzosrvjg7vlkIjoqIjjg7vmpJzljbAgKOepuueZvSvnvavnt5opCiAgICAgICAgZm9yIGNvbCBpbiBbNiwgNywgOCwgOV06CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIGMgPSB3cy5jZWxsKHJvdz1yLCBjb2x1bW49Y29sKQogICAgICAgICAgICAgICAgaWYgdHlwZShjKS5fX25hbWVfXyAhPSAiTWVyZ2VkQ2VsbCI6CiAgICAgICAgICAgICAgICAgICAgYy5ib3JkZXIgPSBib3JkZXIKICAgICAgICAgICAgZXhjZXB0OiBwYXNzCgogICAgIyDlkIjoqIjooYwKICAgIHN1bV9yb3cgPSA2ICsgbGVuKHdvcmtfZGF5cykKICAgIHRyeToKICAgICAgICB3cy5jZWxsKHJvdz1zdW1fcm93LCBjb2x1bW49NCkudmFsdWUgPSAi6KiIIgogICAgICAgIHdzLmNlbGwocm93PXN1bV9yb3csIGNvbHVtbj01KS52YWx1ZSA9IHRvdGFsX3N1bQogICAgICAgIHdzLmNlbGwocm93PXN1bV9yb3csIGNvbHVtbj01KS5udW1iZXJfZm9ybWF0ID0gIjAuMCIKICAgIGV4Y2VwdDogcGFzcwoKICAgICMg5Y2w5Yi36Kit5a6aCiAgICB3cy5wcmludF9hcmVhID0gZiJBMTpKe3N1bV9yb3d9IgogICAgd3MucGFnZV9zZXR1cC5vcmllbnRhdGlvbiA9ICJwb3J0cmFpdCIKICAgIHdzLnBhZ2Vfc2V0dXAucGFwZXJTaXplID0gOQogICAgd3MucGFnZV9zZXR1cC5maXRUb1dpZHRoID0gMQogICAgd3MucGFnZV9zZXR1cC5maXRUb0hlaWdodCA9IDEKICAgIHdzLnBhZ2VfbWFyZ2lucyA9IFBhZ2VNYXJnaW5zKGxlZnQ9MC41LCByaWdodD0wLjUsIHRvcD0wLjc1LCBib3R0b209MC43NSkKCgpkZWYgX3NhZmVfc2hlZXRfbmFtZShuYW1lLCB1c2VkKToKICAgICIiIkV4Y2Vs44K344O844OI5ZCN44Gu5Yi257SE77yIMzHmloflrZfjgIHnpoHmraLmloflrZfjgIHph43opIfvvInjgavlr77lv5wiIiIKICAgIGZvciBjaCBpbiBbIjoiLCAiXFxcXCIsICIvIiwgIj8iLCAiKiIsICJbIiwgIl0iXToKICAgICAgICBuYW1lID0gbmFtZS5yZXBsYWNlKGNoLCAiICIpCiAgICBuYW1lID0gKG5hbWUgb3IgIlNoZWV0Iikuc3RyaXAoKVs6MzFdIG9yICJTaGVldCIKICAgIGJhc2UgPSBuYW1lCiAgICBuID0gMgogICAgd2hpbGUgbmFtZSBpbiB1c2VkOgogICAgICAgIHN1ZmZpeCA9IGYiKHtufSkiCiAgICAgICAgbmFtZSA9IGJhc2VbOjMxLWxlbihzdWZmaXgpXSArIHN1ZmZpeAogICAgICAgIG4gKz0gMQogICAgcmV0dXJuIG5hbWUKCgpkZWYgZ2VuZXJhdGVfa2FucmlfcmVwb3J0KGRhdGFfanNvbiwga2FucmlfdG1wbF9iNjQpOgogICAgZGF0YSA9IGpzb24ubG9hZHMoZGF0YV9qc29uKQogICAgbmFtZV92YWwgPSBkYXRhLmdldCgibmFtZSIsICIiKQogICAgeW0gICAgICAgPSBkYXRhLmdldCgieWVhcm1vbnRoIiwgIjIwMjUtMDciKQogICAga2Fucmlfc2l0ZXMgPSBkYXRhLmdldCgia2FucmlTaXRlcyIsIFtdKQogICAgcm93c19kYXRhID0gZGF0YS5nZXQoInJvd3MiLCBbXSkKICAgIHksIG0gPSBtYXAoaW50LCB5bS5zcGxpdCgiLSIpKQogICAgc3RhcnQgPSBkYXRlKHksIG0sIDE2KQoKICAgICMg54++5aC044GU44Go44Gu5Ye65Yuk5pel44Oq44K544OI44KS5qeL56+JCiAgICBzaXRlX2RheXMgPSBbXSAgIyBbKHNpdGUsIHRhbnRvLCB3b3JrX2RheXMpXQogICAgZm9yIGtzIGluIGthbnJpX3NpdGVzOgogICAgICAgIHNpdGUgID0ga3MuZ2V0KCJzaXRlIiwgIiIpCiAgICAgICAgdGFudG8gPSAoa3MuZ2V0KCJ0YW50byIpIG9yICIiKS5zdHJpcCgpIG9yIG5hbWVfdmFsCiAgICAgICAgd29ya2Vyc19ieV9pZHggPSBrcy5nZXQoIndvcmtlcnNCeUlkeCIsIHt9KQogICAgICAgIGV4dHJhX2RheXMgPSBrcy5nZXQoImV4dHJhRGF5cyIsIFtdKQoKICAgICAgICB3b3JrX2RheXMgPSBbXQogICAgICAgIGZvciBpZHgsIHJvdyBpbiBlbnVtZXJhdGUocm93c19kYXRhKToKICAgICAgICAgICAgaWYgcm93LmdldCgidHlwZSIpIGluICgid29yayIsImhvbGktd29yayIpIGFuZCByb3cuZ2V0KCJzaXRlIiwiIikgPT0gc2l0ZToKICAgICAgICAgICAgICAgIGQgPSBzdGFydCArIHRpbWVkZWx0YShkYXlzPWlkeCkKICAgICAgICAgICAgICAgIHcgPSAod29ya2Vyc19ieV9pZHguZ2V0KHN0cihpZHgpKSBvciAiIikuc3RyaXAoKQogICAgICAgICAgICAgICAgd29ya19kYXlzLmFwcGVuZCh7CiAgICAgICAgICAgICAgICAgICAgImRhdGUiOiBkLAogICAgICAgICAgICAgICAgICAgICJzdGFydCI6IHJvdy5nZXQoInN0YXJ0IiwiMDg6MDAiKSwKICAgICAgICAgICAgICAgICAgICAiZW5kIjogICByb3cuZ2V0KCJlbmQiLCIxODowMCIpLAogICAgICAgICAgICAgICAgICAgICJ3b3JrZXJzIjogdyBpZiB3IGVsc2UgdGFudG8sCiAgICAgICAgICAgICAgICB9KQogICAgICAgIGZvciBlZCBpbiBleHRyYV9kYXlzOgogICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICBkeSwgZG0sIGRkID0gbWFwKGludCwgZWQuZ2V0KCJkYXRlIiwiIikuc3BsaXQoIi0iKSkKICAgICAgICAgICAgICAgIHcgPSAoZWQuZ2V0KCJ3b3JrZXJzIikgb3IgIiIpLnN0cmlwKCkKICAgICAgICAgICAgICAgIHdvcmtfZGF5cy5hcHBlbmQoewogICAgICAgICAgICAgICAgICAgICJkYXRlIjogZGF0ZShkeSwgZG0sIGRkKSwKICAgICAgICAgICAgICAgICAgICAic3RhcnQiOiBlZC5nZXQoInN0YXJ0IiwiMDg6MDAiKSwKICAgICAgICAgICAgICAgICAgICAiZW5kIjogICBlZC5nZXQoImVuZCIsIjE4OjAwIiksCiAgICAgICAgICAgICAgICAgICAgIndvcmtlcnMiOiB3IGlmIHcgZWxzZSB0YW50bywKICAgICAgICAgICAgICAgIH0pCiAgICAgICAgICAgIGV4Y2VwdDoKICAgICAgICAgICAgICAgIHBhc3MKCiAgICAgICAgaWYgd29ya19kYXlzOgogICAgICAgICAgICB3b3JrX2RheXMuc29ydChrZXk9bGFtYmRhIHg6IHhbImRhdGUiXSkKICAgICAgICAgICAgc2l0ZV9kYXlzLmFwcGVuZCgoc2l0ZSwgdGFudG8sIHdvcmtfZGF5cykpCgogICAgaWYgbm90IHNpdGVfZGF5czoKICAgICAgICByZXR1cm4gTm9uZQoKICAgIHdiID0gb3BlbnB5eGwubG9hZF93b3JrYm9vayhpby5CeXRlc0lPKGJhc2U2NC5iNjRkZWNvZGUoa2FucmlfdG1wbF9iNjQpKSkKICAgIHRtcGwgPSB3Yi53b3Jrc2hlZXRzWzBdCiAgICBvcmlnaW5hbF90aXRsZXMgPSBbd3MudGl0bGUgZm9yIHdzIGluIHdiLndvcmtzaGVldHNdCgogICAgIyDnj77loLTjgZTjgajjgavjg4bjg7Pjg5fjg6zjg7zjg4jjgrfjg7zjg4jjgpLjgrPjg5Tjg7zjgZfjgabmm7jjgY3ovrzjgoAKICAgIHVzZWRfbmFtZXMgPSBzZXQob3JpZ2luYWxfdGl0bGVzKQogICAgZm9yIHNpdGUsIHRhbnRvLCB3b3JrX2RheXMgaW4gc2l0ZV9kYXlzOgogICAgICAgIG5ld193cyA9IHdiLmNvcHlfd29ya3NoZWV0KHRtcGwpCiAgICAgICAgc2hlZXRfbmFtZSA9IF9zYWZlX3NoZWV0X25hbWUoc2l0ZSwgdXNlZF9uYW1lcykKICAgICAgICBuZXdfd3MudGl0bGUgPSBzaGVldF9uYW1lCiAgICAgICAgdXNlZF9uYW1lcy5hZGQoc2hlZXRfbmFtZSkKICAgICAgICBfZmlsbF9zaGVldChuZXdfd3MsIHNpdGUsIHRhbnRvLCB3b3JrX2RheXMpCgogICAgIyDlhYPjgYvjgonlrZjlnKjjgZfjgZ/jgrfjg7zjg4jjgpLjgZnjgbnjgabliYrpmaTvvIjkvZzmiJDjgZfjgZ/nj77loLTjgrfjg7zjg4jjga7jgb/mrovjgZnvvIkKICAgIGZvciB0aXRsZSBpbiBvcmlnaW5hbF90aXRsZXM6CiAgICAgICAgdHJ5OgogICAgICAgICAgICB3Yi5yZW1vdmUod2JbdGl0bGVdKQogICAgICAgIGV4Y2VwdDoKICAgICAgICAgICAgcGFzcwoKICAgIGJ1ZiA9IGlvLkJ5dGVzSU8oKQogICAgd2Iuc2F2ZShidWYpCiAgICByZXR1cm4gYmFzZTY0LmI2NGVuY29kZShidWYuZ2V0dmFsdWUoKSkuZGVjb2RlKCkK";
 
 async function exportKanriReport(){
   if(!pyodide){showToast('⏳ 準備中です');return;}
-  const site = document.getElementById('kanriSiteSelect').value;
-  if(!site){showToast('⚠️ 現場を選択してください');return;}
+  if(!kanriSites.length){showToast('⚠️ 管理現場を追加してください');return;}
   const btn = document.getElementById('kanriBtn');
   btn.disabled=true; btn.textContent='⏳ 出力中...';
   try{
     const ym = document.getElementById('yearmonth').value;
     const [y,m] = ym.split('-').map(Number);
     const name = document.getElementById('name').value;
-    const tanto = document.getElementById('kanriTanto').value.trim();
     const payload = JSON.stringify({
-      name, yearmonth:ym, kanriSite:site, kanriTanto:tanto,
-      kanriWorkersByIdx:kanriWorkersByIdx, rows:rows
+      name, yearmonth:ym,
+      kanriSites: kanriSites.map(ks=>({site:ks.site,tanto:ks.tanto,workersByIdx:ks.workersByIdx,extraDays:ks.extraDays})),
+      rows:rows
     });
     pyodide.globals.set('_kanri_payload', payload);
     pyodide.globals.set('_kanri_tmpl_b64', KANRI_TMPL_B64);
@@ -949,7 +1199,7 @@ async function exportKanriReport(){
     const b64 = pyodide.runPython('generate_kanri_report(_kanri_payload, _kanri_tmpl_b64)');
     if(!b64){showToast('❌ 該当日がありません');return;}
     const disp_m = m<12?m+1:1, disp_y = m<12?y:y+1;
-    downloadB64(b64, `現場管理日程表_${site}_${disp_y}年${disp_m}月.xlsx`);
+    downloadB64(b64, `現場管理日程表_${disp_y}年${disp_m}月.xlsx`);
     showToast('✅ 現場管理日程表を出力しました');
   }catch(e){showToast('❌ エラー: '+e.message.slice(0,60));console.error(e);}
   btn.disabled=false; btn.textContent='📊 現場管理日程表';
