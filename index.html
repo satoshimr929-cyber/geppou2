@@ -7,6 +7,71 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#0f1117;--surface:#1a1d27;--surface2:#22263a;--border:#2e3352;--accent:#4f7cff;--accent2:#00d4aa;--warn:#ff6b6b;--text:#e8eaf6;--text-muted:#7b82b0;}
+  body.light{--bg:#f0f2f7;--surface:#ffffff;--surface2:#e8ecf5;--border:#c8d0e8;--accent:#3b6aff;--accent2:#00b899;--warn:#e84040;--text:#1a1d2e;--text-muted:#6b72a0;}
+  body.sepia{--bg:#f3ead8;--surface:#fbf5e9;--surface2:#ece0c8;--border:#d8c5a0;--accent:#9c6b3f;--accent2:#7a8b4a;--warn:#c0492b;--text:#4a3826;--text-muted:#8a7355;}
+  body.navy{--bg:#dbeaff;--surface:#ffffff;--surface2:#c4dcff;--border:#7eb0f0;--accent:#1565d8;--accent2:#0091b0;--warn:#d63b4b;--text:#0d2a55;--text-muted:#4a6fa5;}
+  body.cyber{--bg:#06060f;--surface:#0e0e24;--surface2:#16163a;--border:#00f0ff;--accent:#00f0ff;--accent2:#ff2bd6;--warn:#ff3b7b;--text:#e0fbff;--text-muted:#5fb8d4;}
+  body.matrix{--bg:#020202;--surface:#050c06;--surface2:#0a180c;--border:rgba(0,255,70,.3);--accent:#00ff46;--accent2:#008f22;--warn:#ff4444;--text:#33ff66;--text-muted:#2a7a3c;}
+  body.solar{--bg:#120a05;--surface:#180e08;--surface2:#211308;--border:rgba(255,85,0,.3);--accent:#ffaa00;--accent2:#ff3300;--warn:#ff0000;--text:#ffe6d5;--text-muted:#945d3d;}
+  /* サイバーテーマのネオングロー（強化版） */
+  body.cyber{background:
+    repeating-linear-gradient(0deg,transparent 0,transparent 2px,rgba(0,240,255,.03) 3px,transparent 4px),
+    radial-gradient(circle at 20% 0%,rgba(255,43,214,.12),transparent 45%),
+    radial-gradient(circle at 80% 100%,rgba(0,240,255,.12),transparent 45%),
+    var(--bg) !important;}
+  body.cyber .header h1{filter:drop-shadow(0 0 10px rgba(0,240,255,.9)) drop-shadow(0 0 22px rgba(255,43,214,.7));letter-spacing:.18em;}
+  body.cyber .section-title{text-shadow:0 0 10px rgba(0,240,255,.8);border-left-color:var(--accent2);box-shadow:-3px 0 8px rgba(255,43,214,.5);}
+  body.cyber .summary-box,body.cyber .day-row,body.cyber #statusBar,body.cyber #themeToggle{box-shadow:0 0 14px rgba(0,240,255,.4),inset 0 0 18px rgba(0,240,255,.08);}
+  body.cyber .summary-item{box-shadow:0 0 8px rgba(255,43,214,.35),inset 0 0 6px rgba(255,43,214,.1);border:1px solid rgba(255,43,214,.4);}
+  body.cyber .summary-item .val{text-shadow:0 0 10px currentColor,0 0 20px currentColor;}
+  body.cyber .btn-primary{box-shadow:0 0 18px rgba(0,240,255,.9),0 0 36px rgba(255,43,214,.6);text-shadow:0 0 8px rgba(255,255,255,.8);}
+  body.cyber .btn-secondary{box-shadow:0 0 10px rgba(0,240,255,.35),inset 0 0 8px rgba(0,240,255,.06);text-shadow:0 0 6px rgba(0,240,255,.5);}
+  body.cyber .btn-secondary:hover{box-shadow:0 0 20px rgba(0,240,255,.8),inset 0 0 12px rgba(0,240,255,.15);}
+  body.cyber .field input,body.cyber .field select{box-shadow:inset 0 0 10px rgba(0,240,255,.15);text-shadow:0 0 4px rgba(0,240,255,.3);}
+  body.cyber .field input:focus,body.cyber .field select:focus{box-shadow:0 0 16px rgba(0,240,255,.8),inset 0 0 10px rgba(0,240,255,.2);}
+  body.cyber .field label{text-shadow:0 0 6px rgba(255,43,214,.6);}
+  body.cyber .day-row:hover{box-shadow:0 0 20px rgba(0,240,255,.8);}
+  body.cyber .day-youbi,body.cyber .day-num{text-shadow:0 0 6px currentColor;}
+  body.cyber .day-badge{box-shadow:0 0 8px rgba(0,240,255,.4);text-shadow:0 0 5px currentColor;}
+  body.cyber .toast{box-shadow:0 0 20px var(--accent2),0 0 40px rgba(255,43,214,.6);}
+  body.cyber .theme-menu{box-shadow:0 0 20px rgba(0,240,255,.6);}
+  body.cyber .quick-btn{text-shadow:0 0 5px rgba(0,240,255,.4);}
+  body.cyber .btn-accent{color:#06060f !important;font-weight:800;box-shadow:0 0 14px rgba(0,240,255,.8);text-shadow:none;}
+  /* Matrix テーマのグロー */
+  body.matrix{background:repeating-linear-gradient(0deg,transparent 0,transparent 2px,rgba(0,255,70,.025) 3px,transparent 4px),radial-gradient(circle at 50% 0%,rgba(0,255,70,.1),transparent 50%),var(--bg) !important;}
+  body.matrix .header h1{filter:drop-shadow(0 0 10px rgba(0,255,70,.8));letter-spacing:.15em;}
+  body.matrix .section-title{text-shadow:0 0 8px rgba(0,255,70,.7);}
+  body.matrix .summary-box,body.matrix .day-row,body.matrix #statusBar,body.matrix #themeToggle{box-shadow:0 0 10px rgba(0,255,70,.3),inset 0 0 12px rgba(0,255,70,.06);}
+  body.matrix .summary-item .val{text-shadow:0 0 10px currentColor,0 0 20px currentColor;}
+  body.matrix .day-row:hover{box-shadow:0 0 16px rgba(0,255,70,.7);}
+  body.matrix .btn-primary{box-shadow:0 0 16px rgba(0,255,70,.8);background:linear-gradient(135deg,#00ff46,#008f22);}
+  body.matrix .btn-accent{color:#020202 !important;font-weight:800;box-shadow:0 0 14px rgba(0,255,70,.8);text-shadow:none;}
+  body.matrix .toast{box-shadow:0 0 20px rgba(0,255,70,.8);}
+  body.matrix .theme-menu{box-shadow:0 0 16px rgba(0,255,70,.5);}
+  body.matrix .section-title{color:#44dd66;}
+  body.matrix .empty{color:#3a9c4c;}
+  body.matrix .day-num,body.matrix .field label,body.matrix .summary-item .lbl{color:#3a9c4c;}
+  /* Solar Flare テーマのグロー */
+  body.solar{background:radial-gradient(circle at 30% 0%,rgba(255,85,0,.12),transparent 45%),radial-gradient(circle at 70% 100%,rgba(255,170,0,.08),transparent 45%),var(--bg) !important;}
+  body.solar .header h1{filter:drop-shadow(0 0 10px rgba(255,170,0,.8)) drop-shadow(0 0 20px rgba(255,51,0,.5));letter-spacing:.15em;}
+  body.solar .section-title{text-shadow:0 0 8px rgba(255,170,0,.6);border-left-color:var(--accent2);}
+  body.solar .summary-box,body.solar .day-row,body.solar #statusBar,body.solar #themeToggle{box-shadow:0 0 10px rgba(255,170,0,.25),inset 0 0 12px rgba(255,85,0,.06);}
+  body.solar .summary-item .val{text-shadow:0 0 8px currentColor,0 0 16px currentColor;}
+  body.solar .day-row:hover{box-shadow:0 0 16px rgba(255,170,0,.6);}
+  body.solar .btn-primary{box-shadow:0 0 16px rgba(255,170,0,.7);background:linear-gradient(135deg,#ffaa00,#ff3300);}
+  body.solar .btn-accent{color:#120a05 !important;font-weight:800;box-shadow:0 0 14px rgba(255,170,0,.8);text-shadow:none;}
+  body.solar .toast{box-shadow:0 0 20px rgba(255,170,0,.8);}
+  body.solar .theme-menu{box-shadow:0 0 16px rgba(255,170,0,.5);}
+  body.solar .section-title{color:#ffc66b;}
+  body.solar .empty{color:#c89a6a;}
+  body.solar .day-num,body.solar .field label,body.solar .summary-item .lbl{color:#c89a6a;}
+  /* テーマ選択メニュー */
+  .theme-menu{position:absolute;top:54px;right:0;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:6px;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,.4);min-width:160px;display:none;}
+  .theme-menu.open{display:block;}
+  .theme-opt{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:7px;cursor:pointer;font-size:14px;color:var(--text);white-space:nowrap;}
+  .theme-opt:hover{background:var(--surface2);}
+  .theme-opt .chk{margin-left:auto;color:var(--accent2);font-weight:700;opacity:0;}
+  .theme-opt.active .chk{opacity:1;}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:24px 16px 60px;}
   .header{text-align:center;margin-bottom:32px;}
@@ -16,7 +81,7 @@
   .field label{display:block;font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
   .field input,.field select{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:10px 14px;outline:none;transition:border-color .2s;}
   .field input:focus,.field select:focus{border-color:var(--accent);}
-  .section-title{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;max-width:700px;margin-left:auto;margin-right:auto;border-left:3px solid var(--accent);padding-left:10px;}
+  .section-title{font-size:14px;font-weight:700;letter-spacing:.10em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;max-width:700px;margin-left:auto;margin-right:auto;border-left:3px solid var(--accent);padding-left:10px;}
   .days-container{max-width:700px;margin:0 auto 16px;display:flex;flex-direction:column;gap:6px;}
   .day-row{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .2s;}
   .day-row:hover{border-color:var(--accent);}
@@ -30,6 +95,7 @@
   .day-badge{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500;}
   .badge-work{background:#4f7cff22;color:var(--accent);}
   .badge-off{background:#ffffff10;color:var(--text-muted);}
+  body.light .badge-off,body.sepia .badge-off,body.navy .badge-off{background:#00000010;}
   .badge-holiday{background:#ff6b6b22;color:var(--warn);}
   .badge-paid{background:#00d4aa22;color:var(--accent2);}
   .badge-daikyu{background:#ffaa0022;color:#ffaa00;}
@@ -48,6 +114,7 @@
   .qb-work.on{border-color:var(--accent);background:#4f7cff22;color:var(--accent);}
   .qb-holi-work.on{border-color:#ff9f43;background:#ff9f4322;color:#ff9f43;}
   .qb-off.on{border-color:#888;background:#ffffff10;color:#aaa;}
+  body.light .qb-off.on,body.sepia .qb-off.on,body.navy .qb-off.on{background:#00000010;color:#777;}
   .qb-paid.on{border-color:var(--accent2);background:#00d4aa22;color:var(--accent2);}
   .qb-daikyu.on{border-color:#ffaa00;background:#ffaa0022;color:#ffaa00;}
   .qb-holiday.on{border-color:var(--warn);background:#ff6b6b22;color:var(--warn);}
@@ -88,9 +155,24 @@
   <p id="saveIndicator" style="font-size:12px;color:var(--accent2);opacity:0;transition:opacity .5s;height:18px;">✅ 自動保存しました</p>
 </div>
 
-<div style="max-width:700px;margin:0 auto 20px;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:10px;" id="statusBar">
-  <div id="dots" style="display:flex;"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-  <span id="statusMsg">Pythonエンジンを準備中... （初回のみ時間がかかります）</span>
+<div style="max-width:700px;margin:0 auto 20px;display:flex;align-items:stretch;gap:10px;">
+  <div style="flex:1;min-width:0;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:10px;" id="statusBar">
+    <div id="dots" style="display:flex;"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    <span id="statusMsg" style="flex:1;">Pythonエンジンを準備中... （初回のみ時間がかかります）</span>
+  </div>
+  <div style="flex-shrink:0;position:relative;">
+    <button id="themeToggle" onclick="toggleThemeMenu(event)" title="テーマ選択"
+      style="height:100%;background:var(--surface);border:1.5px solid var(--border);color:var(--text);border-radius:10px;width:48px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;padding:0;">🌙</button>
+    <div id="themeMenu" class="theme-menu">
+      <div class="theme-opt" data-theme="dark"  onclick="setTheme('dark')"><span>🌙</span><span>ダーク</span><span class="chk">✓</span></div>
+      <div class="theme-opt" data-theme="light" onclick="setTheme('light')"><span>☀️</span><span>ライト</span><span class="chk">✓</span></div>
+      <div class="theme-opt" data-theme="cyber" onclick="setTheme('cyber')"><span>🌃</span><span>サイバー</span><span class="chk">✓</span></div>
+      <div class="theme-opt" data-theme="sepia" onclick="setTheme('sepia')"><span>🌅</span><span>セピア</span><span class="chk">✓</span></div>
+      <div class="theme-opt" data-theme="navy"  onclick="setTheme('navy')"><span>🌊</span><span>ネイビー</span><span class="chk">✓</span></div>
+      <div class="theme-opt" data-theme="matrix" onclick="setTheme('matrix')"><span>🟢</span><span>マトリックス</span><span class="chk">✓</span></div>
+      <div class="theme-opt" data-theme="solar"  onclick="setTheme('solar')"><span>🔥</span><span>ソーラー</span><span class="chk">✓</span></div>
+    </div>
+  </div>
 </div>
 
 <div class="meta-section">
@@ -106,11 +188,11 @@
 <div class="section-title">現場名リスト</div>
 <div style="max-width:700px;margin:0 auto 20px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;">
   <div id="siteTagList" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;min-height:28px;"></div>
-  <div style="display:flex;gap:8px;">
+  <div style="display:flex;gap:8px;width:100%;box-sizing:border-box;">
     <input type="text" id="siteInput" placeholder="現場名を入力してEnterまたは追加"
-      style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;"
+      style="flex:1 1 0;min-width:0;width:0;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;box-sizing:border-box;"
       onkeydown="if(event.key==='Enter'){event.preventDefault();addSite();}">
-    <button onclick="addSite()" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">追加</button>
+    <button class="btn-accent" onclick="addSite()" style="flex:0 0 64px;width:64px;white-space:nowrap;padding:8px 0;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;box-sizing:border-box;">追加</button>
   </div>
 </div>
 
@@ -153,35 +235,6 @@
   </div>
 </div>
 
-<div class="section-title" style="display:flex;align-items:center;justify-content:space-between;">
-  <span>👷 作業者登録（全月共通）</span>
-  <span id="workerCount" style="font-size:12px;color:var(--accent2);font-weight:700;letter-spacing:.05em;"></span>
-</div>
-<div style="max-width:700px;margin:0 auto 20px;background:var(--surface);border:1.5px solid var(--accent);border-radius:12px;padding:14px 16px;">
-  <div id="workerTagList" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;min-height:28px;"></div>
-  <div style="display:flex;gap:8px;">
-    <input type="text" id="workerInput" placeholder="作業者名を入力してEnterまたは追加"
-      style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;"
-      onkeydown="if(event.key==='Enter'){event.preventDefault();addWorker();}">
-    <button onclick="addWorker()" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">追加</button>
-  </div>
-</div>
-
-<div class="section-title">現場管理日程表</div>
-<div style="max-width:700px;margin:0 auto 20px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;">
-  <div class="field" style="margin-bottom:12px;">
-    <label>管理現場</label>
-    <div id="kanriSiteList" style="display:flex;flex-direction:column;gap:10px;margin-bottom:10px;"></div>
-    <div style="display:flex;gap:8px;">
-      <select id="kanriAddSiteSelect"
-        style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;">
-        <option value="">-- 現場を選択 --</option>
-      </select>
-      <button onclick="addKanriSite()" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">＋ 追加</button>
-    </div>
-  </div>
-</div>
-
 <div class="section-title">コメント・目標</div>
 <div style="max-width:700px;margin:0 auto 20px;display:flex;flex-direction:column;gap:10px;">
   <div class="field">
@@ -216,7 +269,128 @@
   </div>
 </div>
 
-<div class="section-title">クラウド連携（GitHub Gist）</div>
+<div class="section-title" style="display:flex;align-items:center;justify-content:space-between;">
+  <span>👷 作業者登録（全月共通）</span>
+  <span id="workerCount" style="font-size:12px;color:var(--accent2);font-weight:700;letter-spacing:.05em;"></span>
+</div>
+<div style="max-width:700px;margin:0 auto 20px;background:var(--surface);border:1.5px solid var(--accent);border-radius:12px;padding:14px 16px;">
+  <div id="workerTagList" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;min-height:28px;"></div>
+  <div style="display:flex;gap:8px;width:100%;box-sizing:border-box;">
+    <input type="text" id="workerInput" placeholder="作業者名を入力してEnterまたは追加"
+      style="flex:1 1 0;min-width:0;width:0;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;box-sizing:border-box;"
+      onkeydown="if(event.key==='Enter'){event.preventDefault();addWorker();}">
+    <button class="btn-accent" onclick="addWorker()" style="flex:0 0 64px;width:64px;white-space:nowrap;padding:8px 0;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;box-sizing:border-box;">追加</button>
+  </div>
+</div>
+
+<div class="section-title">現場管理日程表</div>
+<div style="max-width:700px;margin:0 auto 20px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;">
+  <div class="field" style="margin-bottom:12px;">
+    <label>管理現場</label>
+    <div id="kanriSiteList" style="display:flex;flex-direction:column;gap:10px;margin-bottom:10px;"></div>
+    <div style="display:flex;gap:8px;width:100%;box-sizing:border-box;">
+      <select id="kanriAddSiteSelect"
+        style="flex:1 1 0;min-width:0;width:0;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:8px 12px;outline:none;box-sizing:border-box;">
+        <option value="">-- 現場を選択 --</option>
+      </select>
+      <button class="btn-accent" onclick="addKanriSite()" style="flex:0 0 72px;width:72px;padding:8px 0;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;box-sizing:border-box;">＋ 追加</button>
+    </div>
+  </div>
+</div>
+
+<div class="section-title" style="display:flex;align-items:center;justify-content:space-between;">
+  <span>💴 経費精算</span>
+  <span id="expenseTotalBadge" style="font-size:13px;font-weight:700;color:var(--accent2);text-transform:none;letter-spacing:normal;">¥0</span>
+</div>
+<div style="max-width:700px;margin:0 auto 4px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:12px 16px;">
+  <div class="field" style="margin-bottom:0;">
+    <label>対象月（月末締め）</label>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <select id="expenseMonth" onchange="onExpenseMonthChange()"
+        style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:10px 12px;outline:none;box-sizing:border-box;"></select>
+      <button id="expenseToggleBtn" onclick="toggleExpenseDetail()" title="詳細を開閉"
+        style="flex:0 0 40px;height:40px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text-muted);font-size:14px;cursor:pointer;display:none;">▼</button>
+    </div>
+  </div>
+</div>
+<div id="expenseSectionBody" style="display:none;max-width:700px;margin:0 auto 20px;background:var(--surface);border:1.5px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:12px 16px 14px;">
+  <div class="field" style="margin-bottom:12px;">
+    <label>会社名</label>
+    <input type="text" id="expenseCompany" placeholder="株式会社〇〇建設" oninput="saveData()" onchange="saveData()"
+      style="width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:10px 12px;outline:none;box-sizing:border-box;">
+  </div>
+  <div class="field" style="margin-bottom:14px;">
+    <label>提出日</label>
+    <input type="date" id="expenseSubmitDate"
+      oninput="if(_expenseMonth){_submitDates[_expenseMonth]=this.value;}"
+      style="width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:10px 12px;outline:none;box-sizing:border-box;">
+  </div>
+  <div id="expenseList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;"></div>
+  <button class="btn-accent" onclick="openExpenseEdit()" style="width:100%;padding:12px;border-radius:10px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;box-sizing:border-box;margin-bottom:8px;">＋ 経費を追加</button>
+  <button class="btn btn-primary" id="expenseExcelBtn" onclick="exportExpenseExcel()" style="width:100%;padding:12px;font-size:14px;box-sizing:border-box;">📊 経費精算書を出力</button>
+</div>
+
+<!-- GPS現場候補モーダル -->
+<div id="geoCandOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:flex-end;justify-content:center;">
+  <div style="background:var(--surface);width:100%;max-width:700px;border-radius:16px 16px 0 0;padding:20px 18px 28px;max-height:70vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <span style="font-size:16px;font-weight:700;color:var(--text);">📍 近くの現場を選択</span>
+      <button onclick="document.getElementById('geoCandOverlay').style.display='none';" style="background:none;border:none;color:var(--text-muted);font-size:24px;cursor:pointer;padding:0;line-height:1;">×</button>
+    </div>
+    <div id="geoCandList" style="display:flex;flex-direction:column;gap:8px;"></div>
+  </div>
+</div>
+
+
+<!-- 経費編集モーダル -->
+<div id="expenseOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:flex-end;justify-content:center;">
+  <div style="background:var(--surface);width:100%;max-width:700px;border-radius:16px 16px 0 0;padding:20px 18px 28px;max-height:88vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <span id="expenseModalTitle" style="font-size:17px;font-weight:700;color:var(--text);">経費を追加</span>
+      <button onclick="closeExpenseEdit()" style="background:none;border:none;color:var(--text-muted);font-size:24px;cursor:pointer;padding:0;line-height:1;">×</button>
+    </div>
+
+    <div class="field" style="margin-bottom:14px;">
+      <label>科目</label>
+      <div id="expenseCatGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px;"></div>
+    </div>
+    <div class="field" id="expenseCustomCatField" style="margin-bottom:14px;display:none;">
+      <label>科目名（自由入力）</label>
+      <input type="text" id="expenseCustomCat" placeholder="科目名を入力"
+        style="width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:10px 12px;outline:none;box-sizing:border-box;">
+    </div>
+    <div class="field" style="margin-bottom:14px;">
+      <label>日付</label>
+      <input type="date" id="expenseDate"
+        style="width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:10px 12px;outline:none;box-sizing:border-box;">
+    </div>
+    <div class="field" style="margin-bottom:14px;">
+      <label>現場名</label>
+      <select id="expenseSiteSelect" onchange="if(this.value==='__manual__'){this.style.display='none';document.getElementById('expenseSiteManual').style.display='block';document.getElementById('expenseSiteManual').focus();}else{const _sc=siteList.find(s=>(s.name||s)===this.value);if(_sc&&_sc.client)document.getElementById('expenseStore').value=_sc.client;}"
+        style="width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:10px 12px;outline:none;box-sizing:border-box;">
+        <option value="">-- 現場を選択 --</option>
+      </select>
+      <input type="text" id="expenseSiteManual" placeholder="現場名を入力" style="display:none;width:100%;margin-top:6px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:10px 12px;outline:none;box-sizing:border-box;">
+    </div>
+    <div class="field" style="margin-bottom:14px;">
+      <label>得意先（任意）</label>
+      <input type="text" id="expenseStore" placeholder="例：〇〇商店"
+        style="width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:10px 12px;outline:none;box-sizing:border-box;">
+    </div>
+    <div class="field" style="margin-bottom:18px;">
+      <label>金額（円）</label>
+      <input type="number" id="expenseAmount" placeholder="0" inputmode="numeric"
+        style="width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:16px;padding:10px 12px;outline:none;box-sizing:border-box;">
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button id="expenseDeleteBtn" onclick="deleteExpense()" style="display:none;flex:0 0 auto;padding:12px 18px;border-radius:10px;border:1.5px solid var(--warn);background:transparent;color:var(--warn);font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;">削除</button>
+      <button class="btn-accent" onclick="saveExpense()" style="flex:1;padding:12px;border-radius:10px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-sizing:border-box;">保存</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="section-title" style="margin-top:32px;">クラウド連携（GitHub Gist）</div>
 <div style="max-width:700px;margin:0 auto 20px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;">
   <div class="field">
     <label>GitHubトークン（ghp_xxxxx）</label>
@@ -237,9 +411,9 @@
     <button class="btn btn-secondary" onclick="exportJSON()" style="font-size:13px;padding:10px 8px;">💾 バックアップ</button>
     <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()" style="font-size:13px;padding:10px 8px;">📂 読み込み</button>
     <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(this)">
-    <button class="btn btn-secondary" onclick="gistSave()" style="font-size:13px;padding:10px 8px;">☁️ クラウド保存</button>
+    <button class="btn btn-secondary" onclick="gistLoadConfirm()" style="font-size:13px;padding:10px 8px;">🔄 クラウド読込</button>
   </div>
-  <button class="btn btn-secondary" onclick="gistLoad()" style="font-size:13px;padding:10px 8px;width:100%;">🔄 クラウド読込</button>
+  <button class="btn btn-secondary" onclick="gistSaveConfirm()" style="font-size:13px;padding:10px 8px;width:100%;">☁️ クラウド保存</button>
 
   <!-- 区切り線 -->
   <div style="border-top:1.5px solid var(--border);margin:2px 0;"></div>
@@ -314,29 +488,176 @@ await micropip.install('openpyxl')
 }
 
 // ── 現場名 ──
+// ── GPS位置情報 ──
+// 2点間の距離(m)をHubeny簡易式で計算
+function geoDistance(lat1, lng1, lat2, lng2) {
+  const R = 6378137; // 地球半径(m)
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1), dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+// 現在地を取得（Promise）
+function getCurrentPosition() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) { reject(new Error('位置情報非対応')); return; }
+    navigator.geolocation.getCurrentPosition(
+      pos => resolve(pos.coords),
+      err => reject(err),
+      { enableHighAccuracy:true, timeout:15000, maximumAge:0 }
+    );
+  });
+}
+// 現場に現在地を登録
+async function registerSiteLocation(name) {
+  showToast('📡 位置情報を取得中...');
+  try {
+    const c = await getCurrentPosition();
+    const s = siteList.find(s=>(s.name||s)===name);
+    if (!s || typeof s === 'string') {
+      // 旧形式（文字列）の場合はオブジェクト化
+      const idx = siteList.findIndex(x=>(x.name||x)===name);
+      if (idx >= 0) siteList[idx] = {name:name, client:'', lat:c.latitude, lng:c.longitude};
+    } else {
+      s.lat = c.latitude; s.lng = c.longitude;
+    }
+    renderSiteTags(); saveData();
+    showToast(`✅ ${name} に位置情報を登録（精度±${Math.round(c.accuracy)}m）`);
+  } catch(e) {
+    showToast('❌ 位置取得失敗: ' + (e.code===1?'許可されていません':e.message||'タイムアウト'));
+  }
+}
+// 現在地から近い現場を検出（日別入力用）
+const GEO_RADIUS = 300; // 検出半径(m)
+async function detectSiteForDay(i) {
+  const geoSites = siteList.filter(s=>typeof s.lat==='number' && typeof s.lng==='number');
+  if (!geoSites.length) { showToast('⚠️ 位置登録済みの現場がありません'); return; }
+  showToast('📡 現在地を取得中...');
+  try {
+    const c = await getCurrentPosition();
+    const hits = geoSites
+      .map(s=>({s, d:geoDistance(c.latitude, c.longitude, s.lat, s.lng)}))
+      .filter(x=>x.d <= GEO_RADIUS)
+      .sort((a,b)=>a.d-b.d);
+    if (!hits.length) {
+      const nearest = geoSites
+        .map(s=>({s, d:geoDistance(c.latitude, c.longitude, s.lat, s.lng)}))
+        .sort((a,b)=>a.d-b.d)[0];
+      showToast(`❌ 近くに現場なし（最寄: ${nearest.s.name} ${Math.round(nearest.d)}m）`);
+      return;
+    }
+    if (hits.length === 1) {
+      applyDetectedSite(i, hits[0].s.name);
+      showToast(`✅ ${hits[0].s.name}（${Math.round(hits[0].d)}m）`);
+    } else {
+      showSiteCandidates(i, hits);
+    }
+  } catch(e) {
+    showToast('❌ 位置取得失敗: ' + (e.code===1?'許可されていません':e.message||'タイムアウト'));
+  }
+}
+// 検出した現場を日別入力に反映
+function applyDetectedSite(i, name) {
+  updateRow(i, 'site', name);
+  const sel = document.getElementById('sel-'+i);
+  const inp = document.getElementById('inp-'+i);
+  if (sel && inp) {
+    sel.style.display = 'flex'; sel.value = name; inp.style.display = 'none';
+  }
+}
+// 複数候補をモーダルで表示
+function showSiteCandidates(i, hits) {
+  const ov = document.getElementById('geoCandOverlay');
+  const list = document.getElementById('geoCandList');
+  list.innerHTML = '';
+  hits.forEach(h=>{
+    const b = document.createElement('button');
+    b.style.cssText = 'width:100%;text-align:left;padding:12px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface2);color:var(--text);font-family:inherit;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;';
+    b.innerHTML = `<span>${h.s.name}</span><span style="font-size:12px;color:var(--accent2);">${Math.round(h.d)}m</span>`;
+    b.addEventListener('click', ()=>{
+      applyDetectedSite(i, h.s.name);
+      ov.style.display='none';
+      showToast(`✅ ${h.s.name}（${Math.round(h.d)}m）`);
+    });
+    list.appendChild(b);
+  });
+  ov.style.display = 'flex';
+}
+
 function addSite() {
   const inp = document.getElementById('siteInput'), val = inp.value.trim();
-  if (!val || siteList.includes(val)) { inp.value = ''; return; }
-  siteList.push(val); inp.value = '';
+  if (!val || siteList.some(s=>s.name===val)) { inp.value = ''; return; }
+  siteList.push({name:val, client:''}); inp.value = '';
   renderSiteTags(); updateDatalist(); saveData();
 }
-function removeSite(name) { siteList = siteList.filter(s=>s!==name); renderSiteTags(); updateDatalist(); saveData(); }
+function removeSite(name) { siteList = siteList.filter(s=>s.name!==name); renderSiteTags(); updateDatalist(); saveData(); }
+function updateSiteClient(name, client) {
+  const s = siteList.find(s=>s.name===name);
+  if(s){ s.client=client; saveData(); }
+}
 function renderSiteTags() {
-  document.getElementById('siteTagList').innerHTML = siteList.map(s =>
-    `<span style="display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);border-radius:20px;padding:4px 12px;font-size:13px;">
-      ${s}<button onclick="removeSite(${JSON.stringify(s)})" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:0;">×</button>
-    </span>`).join('');
+  const cont = document.getElementById('siteTagList');
+  cont.innerHTML = '';
+  siteList.forEach(item => {
+    const name = item.name || item; // 旧形式互換
+    const client = item.client || '';
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'display:flex;flex-direction:column;gap:3px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:6px 10px;font-size:13px;min-width:0;';
+    // 1行目：現場名 ＋ 📍 ＋ ×
+    const row1 = document.createElement('div');
+    row1.style.cssText = 'display:flex;align-items:center;gap:6px;';
+    row1.appendChild(document.createTextNode(name));
+    const hasGeo = (typeof item.lat === 'number' && typeof item.lng === 'number');
+    // 📍GPS登録ボタン
+    const geoBtn = document.createElement('button');
+    geoBtn.textContent = '📍';
+    geoBtn.title = hasGeo ? '位置情報を更新（登録済み）' : '現在地を登録';
+    geoBtn.style.cssText = `background:none;border:none;cursor:pointer;font-size:13px;padding:0;margin-left:auto;opacity:${hasGeo?'1':'.35'};filter:${hasGeo?'none':'grayscale(1)'};`;
+    geoBtn.addEventListener('click', () => registerSiteLocation(name));
+    row1.appendChild(geoBtn);
+    const btn = document.createElement('button');
+    btn.textContent = '×';
+    btn.style.cssText = 'background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:0;';
+    btn.addEventListener('click', () => removeSite(name));
+    row1.appendChild(btn);
+    wrap.appendChild(row1);
+    // 登録済みなら座標を小さく表示
+    if (hasGeo) {
+      const geoLabel = document.createElement('div');
+      geoLabel.style.cssText = 'font-size:10px;color:var(--accent2);';
+      geoLabel.textContent = `📍 ${item.lat.toFixed(5)}, ${item.lng.toFixed(5)}`;
+      wrap.appendChild(geoLabel);
+    }
+    // 2行目：得意先入力
+    const inp = document.createElement('input');
+    inp.type = 'text';
+    inp.placeholder = '得意先';
+    inp.value = client;
+    inp.style.cssText = 'font-size:11px;color:var(--text-muted);background:transparent;border:none;border-bottom:1px solid var(--border);outline:none;width:100%;padding:1px 0;font-family:inherit;';
+    inp.addEventListener('change', () => updateSiteClient(name, inp.value.trim()));
+    wrap.appendChild(inp);
+    cont.appendChild(wrap);
+  });
   updateKanriSiteSelect();
 }
 function updateDatalist() {
-  document.getElementById('site-list').innerHTML = siteList.map(s=>`<option value="${s}">`).join('');
+  document.getElementById('site-list').innerHTML = siteList.map(s=>`<option value="${s.name||s}">`).join('');
   // 日別入力のselectも更新
   document.querySelectorAll('[id^="sel-"]').forEach(sel => {
     const i = sel.id.replace('sel-','');
     const cur = rows[i]?.site || '';
-    const opts = siteList.map(s=>`<option value="${s}" ${s===cur?'selected':''}>${s}</option>`).join('');
+    const opts = siteList.map(s=>`<option value="${s.name||s}" ${(s.name||s)===cur?'selected':''}>${s.name||s}</option>`).join('');
     sel.innerHTML = `<option value="">-- 現場を選択 --</option>${opts}<option value="__manual__">✏️ 直接入力...</option>`;
-    if (cur && !siteList.includes(cur)) sel.value = '';
+    if (cur && !siteList.some(s=>(s.name||s)===cur)) sel.value = '';
+  });
+  // 担当現場のselectも更新
+  document.querySelectorAll('#tantoSiteList select.tanto-input').forEach(sel => {
+    const cur = sel.value;
+    const isManual = cur === '__manual__' || (sel.nextElementSibling && sel.nextElementSibling.style.display !== 'none');
+    if (isManual) return; // 直接入力モードのものは触らない
+    const opts = siteList.map(s=>`<option value="${s.name||s}" ${(s.name||s)===cur?'selected':''}>${s.name||s}</option>`).join('');
+    sel.innerHTML = `<option value="">-- 現場を選択 --</option>${opts}<option value="__manual__">✏️ 直接入力...</option>`;
+    if (cur && !siteList.some(s=>(s.name||s)===cur)) sel.value = '';
   });
 }
 
@@ -344,7 +665,7 @@ function updateDatalist() {
 function addTantoRow(val='') {
   const c = document.getElementById('tantoSiteList'), row = document.createElement('div');
   row.style.cssText = 'display:flex;gap:6px;align-items:center;';
-  const opts = siteList.map(s=>`<option value="${s}" ${s===val?'selected':''}>${s}</option>`).join('');
+  const opts = siteList.map(s=>`<option value="${s.name||s}" ${(s.name||s)===val?'selected':''}>${s.name||s}</option>`).join('');
   row.innerHTML = `
     <select class="tanto-input" onchange="if(this.value==='__manual__'){this.style.display='none';this.nextElementSibling.style.display='block';this.nextElementSibling.focus();}else{saveData();}"
       style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;padding:8px 10px;outline:none;">
@@ -352,8 +673,8 @@ function addTantoRow(val='') {
       ${opts}
       <option value="__manual__">✏️ 直接入力...</option>
     </select>
-    <input type="text" placeholder="現場名を入力" value="${siteList.includes(val)?'':val}"
-      style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;padding:8px 10px;outline:none;display:${siteList.includes(val)||!val?'none':'block'};"
+    <input type="text" placeholder="現場名を入力" value="${siteList.some(s=>(s.name||s)===val)?'':val}"
+      style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;padding:8px 10px;outline:none;display:${siteList.some(s=>(s.name||s)===val)||!val?'none':'block'};"
       oninput="saveData()" onchange="saveData()">
     <button onclick="this.parentElement.remove();saveData()"
       style="padding:6px 10px;border-radius:8px;border:1.5px solid var(--border);background:transparent;color:var(--text-muted);font-size:14px;cursor:pointer;">×</button>`;
@@ -372,8 +693,8 @@ function getTantoSites() {
 function setTantoSites(sites) {
   const c = document.getElementById('tantoSiteList'); c.innerHTML = '';
   (sites?.length ? sites : ['']).forEach((s, i) => {
-    const isManual = s && !siteList.includes(s);
-    const opts = siteList.map(sl=>`<option value="${sl}" ${sl===s?'selected':''}>${sl}</option>`).join('');
+    const isManual = s && !siteList.some(x=>(x.name||x)===s);
+    const opts = siteList.map(sl=>`<option value="${sl.name||sl}" ${(sl.name||sl)===s?'selected':''}>${sl.name||sl}</option>`).join('');
     const wrap = document.createElement('div');
     if (i === 0) {
       wrap.innerHTML = `
@@ -441,7 +762,7 @@ function renderDays() {
     el.innerHTML=`
       <div class="day-header" onclick="toggleRow(${i})">
         <span class="day-num">${dateStr}</span><span class="day-youbi">${r.youbi}</span>
-        <span class="day-summary">${summary}</span>${badge}<span class="chevron">▶</span>
+        <span class="day-summary">${summary}</span><span id="exphdr-${i}" style="font-size:10px;color:var(--accent2);font-weight:700;margin-right:2px;"></span>${badge}<span class="chevron">▶</span>
       </div>
       <div class="day-body">
         <div class="quick-btns">
@@ -455,17 +776,19 @@ function renderDays() {
                   style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;padding:8px 10px;outline:none;"
                   id="sel-${i}">
                   <option value="">-- 現場を選択 --</option>
-                  ${siteList.map(s=>`<option value="${s}" ${r.site===s?'selected':''}>${s}</option>`).join('')}
+                  ${siteList.map(s=>`<option value="${s.name||s}" ${r.site===(s.name||s)?'selected':''}>${s.name||s}</option>`).join('')}
                   <option value="__manual__">✏️ 直接入力...</option>
                 </select>
                 <input type="text" placeholder="現場名を入力" value="${r.site}"
-                  style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;padding:8px 10px;outline:none;display:${siteList.some(s=>s===r.site)||!r.site?'none':'block'};"
+                  style="flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;padding:8px 10px;outline:none;display:${siteList.some(s=>(s.name||s)===r.site)||!r.site?'none':'block'};"
                   id="inp-${i}"
                   oninput="updateRow(${i},'site',this.value)"
                   onchange="updateRow(${i},'site',this.value)">
                 <button onclick="document.getElementById('sel-${i}').style.display='flex';document.getElementById('inp-${i}').style.display='none';updateRow(${i},'site','');"
-                  style="display:${siteList.some(s=>s===r.site)||!r.site?'none':'flex'};padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:transparent;color:var(--text-muted);font-size:12px;cursor:pointer;align-items:center;"
+                  style="display:${siteList.some(s=>(s.name||s)===r.site)||!r.site?'none':'flex'};padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:transparent;color:var(--text-muted);font-size:12px;cursor:pointer;align-items:center;"
                   id="back-${i}">戻る</button>
+                <button onclick="detectSiteForDay(${i})" title="現在地から現場を自動検出"
+                  style="flex:0 0 auto;padding:6px 10px;border-radius:8px;border:1.5px solid var(--accent);background:transparent;color:var(--accent);font-size:14px;cursor:pointer;display:flex;align-items:center;">📍</button>
               </div>
             </div>
             <div class="field full"><label>作業内容</label>
@@ -485,11 +808,21 @@ function renderDays() {
                 onchange="updateRow(${i},'zangyo',this.value)"></div>
           </div>
         </div>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);display:flex;align-items:center;gap:8px;">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--text);">
+            <input type="checkbox" id="expchk-${i}" ${expenseHasForDate(r.date)?'checked':''}
+              onchange="onDayExpenseCheck(${i},this.checked)"
+              style="width:18px;height:18px;accent-color:var(--accent);cursor:pointer;">
+            <span>経費あり</span>
+          </label>
+          <span id="expcount-${i}" style="font-size:11px;color:var(--accent2);font-weight:700;cursor:pointer;text-decoration:underline;"></span>
+        </div>
       </div>`;
     cont.appendChild(el);
   });
   updateSummary(); updateHoliBtn();
   if(typeof renderKanriSites==='function')try{renderKanriSites();}catch(e){}
+  if(typeof refreshDayExpenseMarkers==='function')try{refreshDayExpenseMarkers();}catch(e){}
 }
 function toggleRow(i){
   const t=document.getElementById(`row-${i}`), open=t.classList.contains('open');
@@ -546,6 +879,344 @@ function _updateExportSubBtns(){
 // ── 現場管理日程表UI（複数現場） ──
 // kanriSites = [{site,tanto,workersByIdx:{idx:"三浦・海本"},extraDays:[{date,start,end,workers,_open}],_bulk:[],_open:true}]
 let kanriSites = [];
+
+// ══════════ 経費精算（ステップ1） ══════════
+const EXP_PY_B64 = "CmltcG9ydCBvcGVucHl4bAppbXBvcnQgaW8sIGJhc2U2NCwganNvbgpmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRlCgpkZWYgZ2VuZXJhdGVfZXhwZW5zZV9leGNlbChkYXRhX2pzb24sIHRtcGxfYjY0KToKICAgIGRhdGEgPSBqc29uLmxvYWRzKGRhdGFfanNvbikKICAgIGl0ZW1zICAgPSBkYXRhLmdldCgiaXRlbXMiLCBbXSkKICAgIG5hbWUgICAgPSBkYXRhLmdldCgibmFtZSIsICIiKQogICAgY29tcGFueSA9IGRhdGEuZ2V0KCJjb21wYW55IiwgIiIpCiAgICB5ZWFyICAgID0gZGF0YS5nZXQoInllYXIiLCAyMDI2KQogICAgbW9udGggICA9IGRhdGEuZ2V0KCJtb250aCIsIDEpCiAgICBkYXkgICAgID0gZGF0YS5nZXQoImRheSIsIDEpCgogICAgd2IgPSBvcGVucHl4bC5sb2FkX3dvcmtib29rKGlvLkJ5dGVzSU8oYmFzZTY0LmI2NGRlY29kZSh0bXBsX2I2NCkpKQogICAgd3MgPSB3Yi53b3Jrc2hlZXRzWzBdCgogICAgIyDooYwzOiDlubTmnIjml6Xjg7vmsI/lkI0KICAgIHdzWyJCMyJdID0geWVhcgogICAgd3NbIkQzIl0gPSBtb250aAogICAgd3NbIkYzIl0gPSBkYXkKICAgIHdzWyJNMyJdID0gbmFtZQoKICAgICMg6KGMMzU6IOS8muekvuWQjQogICAgd3NbIkEzNSJdID0gY29tcGFueQoKICAgICMg6KGMNeOAnDMwIOOCr+ODquOCogogICAgZm9yIHIgaW4gcmFuZ2UoNSwgMzEpOgogICAgICAgIHdzWyJBJWQiICUgcl0gPSBOb25lCiAgICAgICAgd3NbIkMlZCIgJSByXSA9IE5vbmUKICAgICAgICB3c1siSSVkIiAlIHJdID0gTm9uZQogICAgICAgIHdzWyJLJWQiICUgcl0gPSBOb25lCiAgICAgICAgd3NbIk8lZCIgJSByXSA9IE5vbmUKCiAgICAjIOODh+ODvOOCv+abuOOBjei+vOOBv++8iOePvuWgtOWQjeOCsOODq+ODvOODl+mWk+OBq+epuuihjO+8iQogICAgZXhjZWxfcm93ID0gNQogICAgcHJldl9zaXRlID0gTm9uZQogICAgZm9yIGl0ZW0gaW4gaXRlbXM6CiAgICAgICAgaWYgZXhjZWxfcm93ID4gMzA6CiAgICAgICAgICAgIGJyZWFrCiAgICAgICAgaWYgcHJldl9zaXRlIGlzIG5vdCBOb25lIGFuZCBpdGVtLmdldCgic2l0ZSIpICE9IHByZXZfc2l0ZToKICAgICAgICAgICAgZXhjZWxfcm93ICs9IDEKICAgICAgICBpZiBleGNlbF9yb3cgPiAzMDoKICAgICAgICAgICAgYnJlYWsKICAgICAgICBwcmV2X3NpdGUgPSBpdGVtLmdldCgic2l0ZSIpCiAgICAgICAgIyDml6Xku5gKICAgICAgICBkYXRlX3N0ciA9IGl0ZW0uZ2V0KCJkYXRlIiwgIiIpCiAgICAgICAgaWYgZGF0ZV9zdHI6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIHBhcnRzID0gZGF0ZV9zdHIuc3BsaXQoIi0iKQogICAgICAgICAgICAgICAgd3NbIkElZCIgJSBleGNlbF9yb3ddID0gZGF0ZShpbnQocGFydHNbMF0pLCBpbnQocGFydHNbMV0pLCBpbnQocGFydHNbMl0pKQogICAgICAgICAgICBleGNlcHQ6CiAgICAgICAgICAgICAgICB3c1siQSVkIiAlIGV4Y2VsX3Jvd10gPSBkYXRlX3N0cgogICAgICAgIHdzWyJDJWQiICUgZXhjZWxfcm93XSA9IGl0ZW0uZ2V0KCJzaXRlIikgb3IgTm9uZQogICAgICAgIHdzWyJJJWQiICUgZXhjZWxfcm93XSA9IGl0ZW0uZ2V0KCJzdG9yZSIpIG9yIE5vbmUKICAgICAgICB3c1siSyVkIiAlIGV4Y2VsX3Jvd10gPSBpdGVtLmdldCgiY2F0ZWdvcnkiKSBvciBOb25lCiAgICAgICAgYW10ID0gaXRlbS5nZXQoImFtb3VudCIsIDApCiAgICAgICAgd3NbIk8lZCIgJSBleGNlbF9yb3ddID0gaW50KGFtdCkgaWYgYW10IGVsc2UgTm9uZQogICAgICAgIGV4Y2VsX3JvdyArPSAxCgogICAgYnVmID0gaW8uQnl0ZXNJTygpCiAgICB3Yi5zYXZlKGJ1ZikKICAgIHJldHVybiBiYXNlNjQuYjY0ZW5jb2RlKGJ1Zi5nZXR2YWx1ZSgpKS5kZWNvZGUoInV0Zi04IikK";
+const EXP_TMPL_B64 = "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";
+const EXPENSE_KEY = 'sakugyo_expense_v1';
+const EXP_CATEGORIES = ["駐車場代","材料代","交通費","食費・接待費","宿泊費","消耗品費","通信費","その他（自由入力）"];
+const EXP_CAT_ICONS = {"交通費":"🚃","駐車場代":"🅿️","宿泊費":"🏨","食費・接待費":"🍽","材料代":"🔧","消耗品費":"🛒","通信費":"📱","その他（自由入力）":"✏️"};
+const EXP_CUSTOM_KEY = "その他（自由入力）";
+let expenses = [];          // [{id,date,site,store,category,amount}]
+let _expEditingId = null;
+let _expEditingCat = "駐車場代";
+let _expenseMonth = '';     // 'YYYY-MM' 月末締めの対象月
+const _submitDates = {};       // 月ごとの提出日 {'YYYY-MM': 'YYYY-MM-DD'}
+
+// 月末締め: その月の1日〜末日に該当する経費
+function expensesInMonth(ym){
+  if(!ym) return expenses.slice();
+  return expenses.filter(e=>(e.date||'').slice(0,7)===ym);
+}
+// 経費が存在する月＋現在月を選択肢にする
+function buildExpenseMonthSelect(){
+  const sel=document.getElementById('expenseMonth'); if(!sel)return;
+  const set=new Set(expenses.map(e=>(e.date||'').slice(0,7)).filter(Boolean));
+  const now=new Date();
+  set.add(`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`);
+  const months=[...set].sort();
+  if(!_expenseMonth || !months.includes(_expenseMonth)) _expenseMonth=months[0];
+  sel.innerHTML=months.map(m=>{
+    const [y,mo]=m.split('-');
+    return `<option value="${m}" ${m===_expenseMonth?'selected':''}>${y}年${Number(mo)}月分（${Number(mo)}月末締め）</option>`;
+  }).join('');
+  // 月が既に確定していれば詳細を展開・提出日も復元
+  const body=document.getElementById('expenseSectionBody');
+  const btn=document.getElementById('expenseToggleBtn');
+  if(body) body.style.display=_expenseMonth?'block':'none';
+  if(btn){ btn.style.display=_expenseMonth?'block':'none'; btn.textContent='▼'; }
+  if(_expenseMonth){
+    const [y2,m2]=_expenseMonth.split('-').map(Number);
+    const ld=new Date(y2,m2,0).getDate();
+    const de=document.getElementById('expenseSubmitDate');
+    if(de) de.value=_submitDates[_expenseMonth]||(_expenseMonth+'-'+String(ld).padStart(2,'0'));
+  }
+}
+function onExpenseMonthChange(){
+  _expenseMonth=document.getElementById('expenseMonth').value;
+  // 月が選ばれたら詳細を展開、未選択なら閉じる
+  const body=document.getElementById('expenseSectionBody');
+  const btn=document.getElementById('expenseToggleBtn');
+  if(body) body.style.display=_expenseMonth?'block':'none';
+  if(btn){ btn.style.display=_expenseMonth?'block':'none'; btn.textContent='▼'; }
+  // 提出日：月ごとに保存した値 or 月末日
+  if(_expenseMonth){
+    const [y,m]=_expenseMonth.split('-').map(Number);
+    const lastDay=new Date(y,m,0).getDate();
+    const dateEl=document.getElementById('expenseSubmitDate');
+    if(dateEl) dateEl.value=_submitDates[_expenseMonth]||(_expenseMonth+'-'+String(lastDay).padStart(2,'0'));
+  }
+  renderExpenses();
+}
+
+function expFmt(n){ return Number(n||0).toLocaleString('ja-JP'); }
+function expCatIcon(c){ return EXP_CAT_ICONS[c] || "📋"; }
+
+// Date(ローカル)→'YYYY-MM-DD'（toISOStringはUTCずれするので使わない）
+function dateToISO(d){
+  if(!(d instanceof Date)) return '';
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+// その日付に経費があるか
+function expenseHasForDate(d){
+  const iso=dateToISO(d);
+  return expenses.some(e=>e.date===iso);
+}
+// その日の経費件数
+function expenseCountForDate(d){
+  const iso=dateToISO(d);
+  return expenses.filter(e=>e.date===iso).length;
+}
+// 日別チェックボックスのバッジ・チェック状態を全行更新
+function refreshDayExpenseMarkers(){
+  rows.forEach((r,i)=>{
+    const chk=document.getElementById(`expchk-${i}`);
+    const cnt=document.getElementById(`expcount-${i}`);
+    const hdr=document.getElementById(`exphdr-${i}`);
+    if(chk) chk.checked = expenseHasForDate(r.date);
+    const n=expenseCountForDate(r.date);
+    if(cnt){
+      cnt.textContent = n>0 ? `${n}件（タップで一覧）` : '';
+      cnt.onclick = n>0 ? ()=>openExpenseEdit(expenses.find(e=>e.date===dateToISO(r.date)).id) : null;
+    }
+    if(hdr) hdr.textContent = n>0 ? `💴${n}` : '';
+  });
+}
+// チェック操作：ONなら日付+現場プリセットで経費モーダルを開く／OFFは何もしない（経費は独立）
+function onDayExpenseCheck(i, checked){
+  const r=rows[i]; if(!r)return;
+  const iso=dateToISO(r.date);
+  if(checked){
+    // 既にその日の経費があれば最初の1件を開く、なければ新規プリセット
+    const existing=expenses.find(e=>e.date===iso);
+    if(existing){ openExpenseEdit(existing.id); }
+    else { openExpenseEditPreset(iso, r.site||''); }
+  } else {
+    // チェックを外しても経費は消さない。その日に経費が残っていれば再チェック
+    const chk=document.getElementById(`expchk-${i}`);
+    if(chk && expenseHasForDate(r.date)){
+      // 経費が残っているので外せない旨を伝えてチェックを戻す
+      chk.checked=true;
+      showToast('経費を消すには経費欄から削除してください');
+    }
+  }
+}
+// 日付・現場をプリセットして新規経費モーダルを開く
+function openExpenseEditPreset(isoDate, site){
+  openExpenseEdit(null);
+  if(isoDate) document.getElementById('expenseDate').value=isoDate;
+  // 現場のプリセット
+  const sel=document.getElementById('expenseSiteSelect');
+  const man=document.getElementById('expenseSiteManual');
+  if(site && siteList.some(s=>(s.name||s)===site)){
+    man.style.display='none'; sel.style.display='block'; updateExpenseSiteSelect(site);
+    // 現場に紐付いた得意先を自動セット
+    const _sc=siteList.find(s=>(s.name||s)===site);
+    if(_sc&&_sc.client) document.getElementById('expenseStore').value=_sc.client;
+  } else if(site){
+    sel.style.display='none'; man.style.display='block'; man.value=site;
+  }
+}
+
+function loadExpenses(){
+  try{ const s=JSON.parse(localStorage.getItem(EXPENSE_KEY)||'null'); if(s&&Array.isArray(s.items))expenses=s.items; }catch(e){}
+  renderExpenses();
+}
+function saveExpenses(){
+  try{ localStorage.setItem(EXPENSE_KEY, JSON.stringify({items:expenses})); }catch(e){}
+}
+
+function renderExpenses(){
+  const cont=document.getElementById('expenseList'); if(!cont)return;
+  buildExpenseMonthSelect();
+  const list=expensesInMonth(_expenseMonth).slice().sort((a,b)=>{
+    const sa=a.site||'', sb=b.site||'';
+    if(sa!==sb) return sa.localeCompare(sb,'ja');
+    const ca=a.category||'', cb=b.category||'';
+    if(ca!==cb) return ca.localeCompare(cb,'ja');
+    return (a.date||'').localeCompare(b.date||'');
+  });
+  cont.innerHTML='';
+  if(!list.length){
+    const e=document.createElement('div');
+    e.style.cssText='text-align:center;padding:20px;color:var(--text-muted);font-size:13px;';
+    e.textContent='この月の経費はありません';
+    cont.appendChild(e);
+  } else {
+    list.forEach(it=>{
+      const card=document.createElement('div');
+      card.style.cssText='display:flex;align-items:center;gap:12px;background:var(--surface2);border-radius:10px;padding:10px 12px;cursor:pointer;';
+      const icon=document.createElement('div');
+      icon.style.cssText='width:38px;height:38px;border-radius:10px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;';
+      icon.textContent=expCatIcon(it.category);
+      const info=document.createElement('div');
+      info.style.cssText='flex:1;min-width:0;';
+      const nm=document.createElement('div');
+      nm.style.cssText='font-weight:700;font-size:14px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
+      nm.textContent=it.site||it.store||'（未入力）';
+      const sub=document.createElement('div');
+      sub.style.cssText='font-size:11px;color:var(--text-muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
+      sub.textContent=`${it.date||'日付未入力'}${it.category?' ／ '+it.category:''}${it.store?' ／ '+it.store:''}`;
+      info.appendChild(nm); info.appendChild(sub);
+      const amt=document.createElement('div');
+      amt.style.cssText='font-weight:700;font-size:15px;color:var(--text);flex-shrink:0;';
+      amt.textContent='¥'+expFmt(it.amount);
+      card.appendChild(icon); card.appendChild(info); card.appendChild(amt);
+      card.addEventListener('click',()=>openExpenseEdit(it.id));
+      cont.appendChild(card);
+    });
+  }
+  const total=list.reduce((s,i)=>s+(Number(i.amount)||0),0);
+  const badge=document.getElementById('expenseTotalBadge');
+  if(badge)badge.textContent='¥'+expFmt(total);
+  if(typeof refreshDayExpenseMarkers==='function')try{refreshDayExpenseMarkers();}catch(e){}
+}
+
+function renderExpenseCatGrid(){
+  const grid=document.getElementById('expenseCatGrid'); if(!grid)return;
+  grid.innerHTML='';
+  EXP_CATEGORIES.forEach(c=>{
+    const b=document.createElement('button');
+    const on=c===_expEditingCat;
+    b.style.cssText=`display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px;border-radius:9px;border:1.5px solid ${on?'var(--accent)':'var(--border)'};background:${on?'var(--surface2)':'transparent'};color:var(--text);cursor:pointer;font-family:'Noto Sans JP',sans-serif;`;
+    b.innerHTML=`<span style="font-size:18px;">${expCatIcon(c)}</span><span style="font-size:9px;line-height:1.2;text-align:center;">${c.replace('（自由入力）','')}</span>`;
+    b.addEventListener('click',()=>{ _expEditingCat=c; renderExpenseCatGrid();
+      document.getElementById('expenseCustomCatField').style.display = c===EXP_CUSTOM_KEY?'block':'none';
+    });
+    grid.appendChild(b);
+  });
+}
+
+function updateExpenseSiteSelect(cur){
+  const sel=document.getElementById('expenseSiteSelect'); if(!sel)return;
+  const opts=siteList.map(s=>`<option value="${s.name||s}" ${(s.name||s)===cur?'selected':''}>${s.name||s}</option>`).join('');
+  sel.innerHTML=`<option value="">-- 現場を選択 --</option>${opts}<option value="__manual__">✏️ 直接入力...</option>`;
+}
+
+function openExpenseEdit(id){
+  _expEditingId = id || null;
+  const it = id ? expenses.find(x=>x.id===id) : null;
+  _expEditingCat = it?.category && EXP_CATEGORIES.includes(it.category) ? it.category
+                  : (it?.category ? EXP_CUSTOM_KEY : "駐車場代");
+  renderExpenseCatGrid();
+  // 自由入力科目
+  const customField=document.getElementById('expenseCustomCatField');
+  const customInput=document.getElementById('expenseCustomCat');
+  if(it && !EXP_CATEGORIES.includes(it.category)){
+    _expEditingCat=EXP_CUSTOM_KEY; renderExpenseCatGrid();
+    customField.style.display='block'; customInput.value=it.category||'';
+  } else { customField.style.display = _expEditingCat===EXP_CUSTOM_KEY?'block':'none'; customInput.value=''; }
+  // 日付（既定は対象月の今日、なければ対象月1日）
+  if(it?.date){
+    document.getElementById('expenseDate').value = it.date;
+  } else {
+    const now=new Date();
+    const nowYm=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+    if(_expenseMonth && _expenseMonth!==nowYm){
+      document.getElementById('expenseDate').value = `${_expenseMonth}-01`;
+    } else {
+      document.getElementById('expenseDate').value = dateToISO(now);
+    }
+  }
+  // 現場
+  const siteSel=document.getElementById('expenseSiteSelect');
+  const siteManual=document.getElementById('expenseSiteManual');
+  siteManual.style.display='none'; siteManual.value='';
+  if(it && it.site && !siteList.some(s=>(s.name||s)===it.site)){
+    updateExpenseSiteSelect(''); siteSel.style.display='none';
+    siteManual.style.display='block'; siteManual.value=it.site;
+  } else {
+    siteSel.style.display='block'; updateExpenseSiteSelect(it?.site||'');
+  }
+  // 得意先：既存データがあればそれを、なければ現場に紐付けた得意先を自動セット
+  const _autoStore = it?.store || '';
+  if(_autoStore){
+    document.getElementById('expenseStore').value = _autoStore;
+  } else {
+    const _sc = siteList.find(s=>(s.name||s)===(it?.site||''));
+    document.getElementById('expenseStore').value = (_sc&&_sc.client)||'';
+  }
+  document.getElementById('expenseAmount').value = it?.amount || '';
+  document.getElementById('expenseModalTitle').textContent = id ? '経費を編集' : '経費を追加';
+  document.getElementById('expenseDeleteBtn').style.display = id ? 'block' : 'none';
+  document.getElementById('expenseOverlay').style.display='flex';
+}
+function closeExpenseEdit(){ document.getElementById('expenseOverlay').style.display='none'; }
+
+function getExpenseEffectiveCat(){
+  if(_expEditingCat===EXP_CUSTOM_KEY){
+    return (document.getElementById('expenseCustomCat').value||'').trim() || EXP_CUSTOM_KEY;
+  }
+  return _expEditingCat;
+}
+function getExpenseSiteValue(){
+  const sel=document.getElementById('expenseSiteSelect');
+  const man=document.getElementById('expenseSiteManual');
+  if(man.style.display!=='none') return man.value.trim();
+  return sel.value==='__manual__' ? '' : sel.value;
+}
+
+function saveExpense(){
+  const updated={
+    id:_expEditingId||Date.now().toString(),
+    date:document.getElementById('expenseDate').value,
+    site:getExpenseSiteValue(),
+    store:document.getElementById('expenseStore').value.trim(),
+    category:getExpenseEffectiveCat(),
+    amount:Number(document.getElementById('expenseAmount').value)||0
+  };
+  if(_expEditingId){ expenses=expenses.map(x=>x.id===_expEditingId?updated:x); }
+  else { expenses.push(updated); }
+  saveExpenses(); renderExpenses(); closeExpenseEdit();
+  showToast('💴 経費を保存しました');
+}
+function deleteExpense(){
+  if(!_expEditingId)return;
+  if(!confirm('この経費を削除しますか？'))return;
+  expenses=expenses.filter(x=>x.id!==_expEditingId);
+  saveExpenses(); renderExpenses(); closeExpenseEdit();
+  showToast('🗑️ 削除しました');
+}
+
+let _expPyLoaded=false;
+async function exportExpenseExcel(){
+  if(!pyodide){alert('Pythonエンジンが準備できていません。しばらくお待ちください。');return;}
+  const ym=_expenseMonth || document.getElementById('expenseMonth').value;
+  if(!ym){alert('対象月を選択してください');return;}
+  const list=expensesInMonth(ym);
+  if(!list.length){showToast('この月の経費がありません');return;}
+  const [y,m]=ym.split('-').map(Number);
+  // 提出日：入力欄の値を使用、未入力なら月末日
+  const submitDateEl=document.getElementById('expenseSubmitDate');
+  let submitY=y, submitM=m, submitD=new Date(y,m,0).getDate();
+  if(submitDateEl && submitDateEl.value){
+    const parts=submitDateEl.value.split('-').map(Number);
+    submitY=parts[0]; submitM=parts[1]; submitD=parts[2];
+  }
+  const name=document.getElementById('name').value||'';
+  const company=(document.getElementById('expenseCompany')||{}).value||'';
+  const btn=document.getElementById('expenseExcelBtn');
+  btn.disabled=true; const orig=btn.textContent; btn.textContent='⏳ 生成中...';
+  try{
+    // 現場名でソート（同一現場をまとめる）
+    const sorted=list.slice().sort((a,b)=>{
+      const sa=a.site||'', sb=b.site||'';
+      if(sa!==sb)return sa.localeCompare(sb,'ja');
+      const ca=a.category||'', cb=b.category||'';
+      if(ca!==cb)return ca.localeCompare(cb,'ja');
+      return (a.date||'').localeCompare(b.date||'');
+    });
+    if(!_expPyLoaded){
+      pyodide.runPython(new TextDecoder().decode(Uint8Array.from(atob(EXP_PY_B64), c=>c.charCodeAt(0))));
+      _expPyLoaded=true;
+    }
+    const payload=JSON.stringify({items:sorted,name,company,year:submitY,month:submitM,day:submitD});
+    pyodide.globals.set('_exp_payload', payload);
+    pyodide.globals.set('_exp_tmpl_b64', EXP_TMPL_B64);
+    const b64=pyodide.runPython('generate_expense_excel(_exp_payload, _exp_tmpl_b64)');
+    downloadB64(b64,`経費${y}_${String(m).padStart(2,'0')}.xlsx`);
+    showToast('✅ 経費精算書を出力しました');
+  }catch(e){showToast('❌ ' + (e.message||String(e)).slice(0,120));console.error(e);}
+  btn.disabled=false; btn.textContent=orig;
+}
+
+// オーバーレイ背景タップで閉じる
+document.addEventListener('click',function(e){
+  const ov=document.getElementById('expenseOverlay');
+  if(ov&&ov.style.display==='flex'&&e.target===ov)closeExpenseEdit();
+});
+// ══════════ 経費精算ここまで ══════════
+
 let workerList = [];  // 登録作業者（全月共通）
 let _autoWorker = '';  // 氏名から自動登録した名字
 
@@ -640,7 +1311,7 @@ function updateKanriSiteSelect(){
   if(!sel)return;
   const used=kanriSites.map(ks=>ks.site);
   sel.innerHTML='<option value="">-- 現場を選択 --</option>';
-  siteList.filter(s=>!used.includes(s)).forEach(s=>sel.innerHTML+=`<option value="${s}">${s}</option>`);
+  siteList.map(s=>s.name||s).filter(n=>!used.includes(n)).forEach(n=>sel.innerHTML+=`<option value="${n}">${n}</option>`);
 }
 
 function addKanriSite(){
@@ -788,7 +1459,7 @@ function renderKanriSites(){
         <div>
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">一括選択（全日に適用）</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;">${bulkChips}</div>
-          <button onclick="applyKanriBulk(${si})" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">一括適用</button>
+          <button class="btn-accent" onclick="applyKanriBulk(${si})" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">一括適用</button>
         </div>`;
 
       // 日別リスト（rows由来＋追加日を日付順マージ）
@@ -889,7 +1560,7 @@ function clearAll(){
 // ── 保存 ──
 let _gistSaveTimer = null;
 function saveData(){
-  try{localStorage.setItem(GLOBAL_KEY,JSON.stringify({name:document.getElementById('name').value,siteList,workerList,yearmonth:document.getElementById('yearmonth').value}));}catch(e){}
+  try{localStorage.setItem(GLOBAL_KEY,JSON.stringify({name:document.getElementById('name').value,siteList,workerList,yearmonth:document.getElementById('yearmonth').value,expenseCompany:(document.getElementById('expenseCompany')||{}).value||''}));}catch(e){}
   const ym=document.getElementById('yearmonth').value; if(!ym)return;
   const defS=DEFAULT_START,defE=DEFAULT_END;
   try{localStorage.setItem(monthKey(ym),JSON.stringify({
@@ -911,7 +1582,8 @@ function loadGlobal(){
   try{
     const s=JSON.parse(localStorage.getItem(GLOBAL_KEY)||'null'); if(!s)return;
     if(s.name)document.getElementById('name').value=s.name;
-    if(s.siteList){siteList=s.siteList;renderSiteTags();updateDatalist();}
+    if(s.expenseCompany!==undefined){const ec=document.getElementById('expenseCompany');if(ec)ec.value=s.expenseCompany;}
+    if(s.siteList){siteList=s.siteList.map(x=>typeof x==='string'?{name:x,client:''}:x);renderSiteTags();updateDatalist();}
     if(s.workerList){workerList=s.workerList;renderWorkerTags();}
     // 氏名から_autoWorkerを復元
     if(s.name){const parts=s.name.trim().split(/[\s\u3000]+/);_autoWorker=parts[0]||'';}
@@ -994,9 +1666,10 @@ document.getElementById('yearmonth').addEventListener('change',()=>{loadMonthDat
 
 // ── JSON ──
 function exportJSON(){
-  const all={global:null,months:{}};
+  const all={global:null,months:{},expenses:null};
   try{all.global=JSON.parse(localStorage.getItem(GLOBAL_KEY)||'null');}catch(e){}
   for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k?.startsWith('sakugyo_month_'))try{all.months[k]=JSON.parse(localStorage.getItem(k));}catch(e){}}
+  try{all.expenses=JSON.parse(localStorage.getItem(EXPENSE_KEY)||'null');}catch(e){}
   const blob=new Blob([JSON.stringify(all,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob),a=document.createElement('a');
   const now=new Date();a.href=url;a.download=`作業月報バックアップ_${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}.json`;
@@ -1008,7 +1681,8 @@ function importJSON(input){
   reader.onload=e=>{try{const all=JSON.parse(e.target.result);
     if(all.global)localStorage.setItem(GLOBAL_KEY,JSON.stringify(all.global));
     if(all.months)Object.entries(all.months).forEach(([k,v])=>localStorage.setItem(k,JSON.stringify(v)));
-    loadGlobal();loadMonthData(document.getElementById('yearmonth').value);showToast('✅ 読み込みました');
+    if(all.expenses)localStorage.setItem(EXPENSE_KEY,JSON.stringify(all.expenses));
+    loadGlobal();loadMonthData(document.getElementById('yearmonth').value);loadExpenses();showToast('✅ 読み込みました');
   }catch(err){showToast('❌ 読み込みエラー');}};
   reader.readAsText(file);input.value='';
 }
@@ -1083,13 +1757,24 @@ function getToken() {
          localStorage.getItem('gist_token') || '';
 }
 
+async function gistSaveConfirm() {
+  if (confirm('☁️ クラウドに保存しますか？\n\nクラウド上の既存データは現在の入力内容で上書きされます。')) {
+    await gistSave();
+  }
+}
+async function gistLoadConfirm() {
+  if (confirm('🔄 クラウドから読み込みますか？\n\n現在の入力内容はクラウドのデータで上書きされます。')) {
+    await gistLoad();
+  }
+}
+
 async function gistSave(silent=false) {
   const token = getToken();
   if (!token) { if(!silent) showToast('❌ GitHubトークンを入力してください'); return; }
   if(!silent) showToast('☁️ 保存中...');
   try {
     // 全データを収集
-    const all = { global: null, months: {} };
+    const all = { global: null, months: {}, expenses: null };
     try { all.global = JSON.parse(localStorage.getItem(GLOBAL_KEY)||'null'); } catch(e) {}
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
@@ -1097,6 +1782,7 @@ async function gistSave(silent=false) {
         try { all.months[k] = JSON.parse(localStorage.getItem(k)); } catch(e) {}
       }
     }
+    try { all.expenses = JSON.parse(localStorage.getItem(EXPENSE_KEY)||'null'); } catch(e) {}
     const content = JSON.stringify(all, null, 2);
 
     // 既存GistのIDを確認
@@ -1163,14 +1849,24 @@ async function gistLoad(silent=false) {
     const all = JSON.parse(content);
     if (all.global) localStorage.setItem(GLOBAL_KEY, JSON.stringify(all.global));
     if (all.months) Object.entries(all.months).forEach(([k,v]) => localStorage.setItem(k, JSON.stringify(v)));
+    if (all.expenses) localStorage.setItem(EXPENSE_KEY, JSON.stringify(all.expenses));
 
     loadGlobal();
     loadMonthData(document.getElementById('yearmonth').value);
+    loadExpenses();
     if(!silent) showToast('✅ クラウドから読み込みました'); else showToast('☁️ クラウドから読み込みました');
   } catch(e) {
     showToast('❌ ' + e.message);
     console.error(e);
   }
+}
+
+function toggleExpenseDetail(){
+  const body=document.getElementById('expenseSectionBody');
+  const btn=document.getElementById('expenseToggleBtn');
+  const open=body.style.display==='none';
+  body.style.display=open?'block':'none';
+  if(btn) btn.textContent=open?'▼':'▶';
 }
 
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
@@ -1216,9 +1912,42 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 const savedToken = localStorage.getItem('gist_token');
 if (savedToken) document.getElementById('githubToken').value = savedToken;
 
+// テーマ復元・切替
+const THEME_ICON={dark:'🌙',light:'☀️',cyber:'🌃',sepia:'🌅',navy:'🌊',matrix:'🟢',solar:'🔥'};
+const THEME_LIST=['dark','light','cyber','sepia','navy','matrix','solar'];
+function applyTheme(t){
+  if(!THEME_LIST.includes(t))t='dark';
+  document.body.classList.remove('light','cyber','sepia','navy','matrix','solar');
+  if(t!=='dark')document.body.classList.add(t);
+  const btn=document.getElementById('themeToggle');
+  if(btn)btn.textContent=THEME_ICON[t];
+  document.querySelectorAll('.theme-opt').forEach(o=>{
+    o.classList.toggle('active',o.dataset.theme===t);
+  });
+}
+function setTheme(t){
+  localStorage.setItem('sakugyo_theme',t);
+  applyTheme(t);
+  document.getElementById('themeMenu').classList.remove('open');
+}
+function toggleThemeMenu(e){
+  e.stopPropagation();
+  document.getElementById('themeMenu').classList.toggle('open');
+}
+// メニュー外タップで閉じる
+document.addEventListener('click',function(e){
+  const menu=document.getElementById('themeMenu');
+  const btn=document.getElementById('themeToggle');
+  if(menu&&menu.classList.contains('open')&&!menu.contains(e.target)&&e.target!==btn){
+    menu.classList.remove('open');
+  }
+});
+applyTheme(localStorage.getItem('sakugyo_theme')||'dark');
+
 buildMonthSelect();
 loadGlobal();
 loadMonthData(document.getElementById('yearmonth').value);
+loadExpenses();
 
 // トークンがあれば起動時に自動クラウド読み込み
 if (savedToken) {
